@@ -7,9 +7,9 @@ import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Clients;
+import com.psyhozoom.virman.Client.Classes.Izvestaji;
 import com.psyhozoom.virman.Client.Classes.Racuni;
 import com.psyhozoom.virman.Client.Classes.SifraPlacanja;
-import com.psyhozoom.virman.Client.Classes.Stampa;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -106,6 +106,19 @@ public class IsplataController implements Initializable {
     object.put("iznos", Double.valueOf(tIznos.getText().trim().replaceAll(",", "")));
     object.put("modelZaduzenje", tModel.getText().trim());
     object.put("pozivNaBrojZaduzenje", tPozivNaBroj.getText().trim());
+
+    Izvestaji izvestaji = new Izvestaji();
+    izvestaji.setRacunPlatioca(object.getString("racunPlatioca"));
+    izvestaji.setPlatioc(object.getString("Platioc"));
+    izvestaji.setMestoPrimaoca(object.getString("mesto"));
+    izvestaji.setMestoPlatioca(object.getString("mesto"));
+    izvestaji.setSvrhaPlacanja(object.getString("svrhaUplate"));
+    izvestaji.setSifraPlacanja(object.getString("sifraPlacanja"));
+    izvestaji.setIznos(object.getDouble("iznos"));
+    izvestaji.setModelZaduzenje(object.getString("modelZaduzenje"));
+    izvestaji.setPozivNaBrojZaduzenje(object.getString("modelPozivNaBrojZaduzenje"));
+
+
     object = client.send(object);
 
     if (object.has("ERROR")) {
@@ -118,8 +131,8 @@ public class IsplataController implements Initializable {
       return;
     }
 
-    Stampa stampa = new Stampa(bStampa.getScene().getWindow());
-    stampa.stampaIsplate(object);
+    //Stampa stampa = new Stampa(bStampa.getScene().getWindow());
+    //stampa.stampaIsplate(object);
   }
 
   public void setClient(Client client) {

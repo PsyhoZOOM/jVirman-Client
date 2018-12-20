@@ -8,9 +8,9 @@ import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Clients;
 import com.psyhozoom.virman.Client.Classes.Dobavljaci;
+import com.psyhozoom.virman.Client.Classes.Izvestaji;
 import com.psyhozoom.virman.Client.Classes.Racuni;
 import com.psyhozoom.virman.Client.Classes.SifraPlacanja;
-import com.psyhozoom.virman.Client.Classes.Stampa;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -238,7 +238,22 @@ public class PrenosController implements Initializable {
     object.put("modelOdobrenje", tModelPrimaoca.getText().trim());
     object.put("pozivNaBrojOdobrenje", tPozivNaBrojPrimaoca.getText().trim());
 
+    Izvestaji izvestaji = new Izvestaji();
+    izvestaji.setPlatioc(object.getString("platioc"));
+    izvestaji.setMestoPlatioca(object.getString("mestoPlatioca"));
+    izvestaji.setSvrhaPlacanja(object.getString("svrhaPlacanja"));
+    izvestaji.setRacunPlatioca(object.getString("racunPlatioca"));
+    izvestaji.setPrimaoc(object.getString("primaoc"));
+    izvestaji.setMestoPrimaoca(object.getString("mestoPrimaoca"));
+    izvestaji.setRacunPrimaoca(object.getString("racunPrimaoca"));
+    izvestaji.setSifraPlacanja(object.getString("sifraPLacanja"));
+    izvestaji.setIznos(object.getDouble("iznos"));
+    izvestaji.setModelZaduzenje(object.getString("modelZaduzenje"));
+    izvestaji.setPozivNaBrojZaduzenje(object.getString("pozivNaBrojZaduzenje"));
+    izvestaji.setModelOdobrenje(object.getString("modelOdobrenje"));
+    izvestaji.setPozivNaBrojOdobrenje(object.getString("pozivNaBrojOdobrenje"));
     object = client.send(object);
+
 
     if (object.has("ERROR")) {
       AlertUser.error("GRESKA", object.getString("ERROR"));
@@ -251,7 +266,7 @@ public class PrenosController implements Initializable {
       return;
     }
 
-    Stampa stampa = new Stampa(bSrtampa.getScene().getWindow());
-    stampa.stampaPrenost(object);
+    // Stampa stampa = new Stampa(bSrtampa.getScene().getWindow());
+    /// stampa.stampaPrenost(object);
   }
 }

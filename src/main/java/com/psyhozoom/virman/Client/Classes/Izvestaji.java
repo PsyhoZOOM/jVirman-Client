@@ -18,6 +18,24 @@ public class Izvestaji extends RecursiveTreeObject<Izvestaji> {
   String pozivNaBrojZaduzenje;
   String pozivNaBrojOdobrenje;
   String svrhaPlacanja;
+  String mestoPlatioca;
+  String mestoPrimaoca;
+
+  public String getMestoPlatioca() {
+    return mestoPlatioca;
+  }
+
+  public void setMestoPlatioca(String mestoPlatioca) {
+    this.mestoPlatioca = mestoPlatioca;
+  }
+
+  public String getMestoPrimaoca() {
+    return mestoPrimaoca;
+  }
+
+  public void setMestoPrimaoca(String mestoPrimaoca) {
+    this.mestoPrimaoca = mestoPrimaoca;
+  }
 
   public int getId() {
     return id;
