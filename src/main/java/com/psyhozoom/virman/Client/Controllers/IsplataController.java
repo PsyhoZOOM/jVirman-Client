@@ -118,7 +118,7 @@ public class IsplataController implements Initializable {
       return;
     }
 
-    Stampa stampa = new Stampa();
+    Stampa stampa = new Stampa(bStampa.getScene().getWindow());
     stampa.stampaIsplate(object);
   }
 

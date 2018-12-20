@@ -140,7 +140,7 @@ public class UplataController implements Initializable {
       return;
     }
 
-    Stampa stampa = new Stampa();
+    Stampa stampa = new Stampa(bStampa.getScene().getWindow());
     stampa.stampaUplate(object);
 
 

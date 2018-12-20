@@ -251,7 +251,7 @@ public class PrenosController implements Initializable {
       return;
     }
 
-    Stampa stampa = new Stampa();
+    Stampa stampa = new Stampa(bSrtampa.getScene().getWindow());
     stampa.stampaPrenost(object);
   }
 }

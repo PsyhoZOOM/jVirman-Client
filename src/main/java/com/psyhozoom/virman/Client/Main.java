@@ -2,6 +2,7 @@ package com.psyhozoom.virman.Client;
 
 import com.psyhozoom.virman.Client.Controllers.LoginController;
 import java.io.IOException;
+import java.util.Locale;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +32,9 @@ public class Main extends Application {
 
   @Override
   public void start(Stage primaryStage) {
+    Locale.setDefault(new Locale("en"));
+    System.setProperty("file.encoding", "UTF-8");
+
     showLogin(primaryStage);
 
   }
