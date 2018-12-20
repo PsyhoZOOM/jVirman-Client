@@ -8,75 +8,72 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@main.css"
-  xmlns="http://javafx.com/javafx/8.0.171"
-  fx:controller="com.psyhozoom.virman.Client.Controllers.MainWindowController">
+
+<AnchorPane stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psyhozoom.virman.Client.Controllers.MainWindowController">
   <children>
-    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-      AnchorPane.topAnchor="0.0" prefHeight="800.0" prefWidth="1280.0">
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
       <children>
-        <MenuBar fx:id="menuBar">
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <menus>
             <Menu mnemonicParsing="false" text="Program">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#exitApp" text="Kraj" fx:id="mExit"/>
+                <MenuItem fx:id="mExit" mnemonicParsing="false" onAction="#exitApp" text="Kraj" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Klijenti" fx:id="mClientOptions">
+            <Menu fx:id="mClientOptions" mnemonicParsing="false" text="Klijenti">
               <items>
-                <MenuItem mnemonicParsing="false" text="Nov" fx:id="mClientNov"/>
-                <MenuItem mnemonicParsing="false" text="Izmeni" fx:id="mClientIzmeni"/>
-                <MenuItem mnemonicParsing="false" text="Obrisi" fx:id="mClientIzbrisi"/>
+                <MenuItem fx:id="mClientNov" mnemonicParsing="false" text="Nov" />
+                <MenuItem fx:id="mClientIzmeni" mnemonicParsing="false" text="Izmeni" />
+                <MenuItem fx:id="mClientIzbrisi" mnemonicParsing="false" text="Obrisi" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Šifre">
               <items>
-                <MenuItem mnemonicParsing="false" text="ŠIfre Plaćanja" fx:id="mSifrePlacanja"/>
+                <MenuItem fx:id="mSifrePlacanja" mnemonicParsing="false" text="ŠIfre Plaćanja" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Izveštaji">
               <items>
-                <MenuItem mnemonicParsing="false" onAction="#prikaziIzvestaj"
-                  text="Prikaži izveštaje" fx:id="mPrikaziIzvestaje"/>
+                <MenuItem fx:id="mPrikaziIzvestaje" mnemonicParsing="false" onAction="#prikaziIzvestaj" text="Prikaži izveštaje" />
               </items>
             </Menu>
             <Menu mnemonicParsing="false" text="Pomoć">
               <items>
-                <MenuItem mnemonicParsing="false" text="About"/>
+                <MenuItem mnemonicParsing="false" text="About" />
               </items>
             </Menu>
           </menus>
         </MenuBar>
-        <HBox alignment="CENTER_LEFT" spacing="10.0">
+        <HBox alignment="CENTER_LEFT" spacing="10.0" VBox.vgrow="NEVER">
           <children>
-            <JFXTextField alignment="CENTER" labelFloat="true" minWidth="250.0"
-              promptText="Pretraga" fx:id="tSearch"/>
-            <Button mnemonicParsing="false" onAction="#refreshTable" text="Osveži" fx:id="bOsvezi">
+            <JFXTextField fx:id="tSearch" alignment="CENTER" labelFloat="true" minWidth="250.0" promptText="Pretraga" />
+            <Button fx:id="bOsvezi" mnemonicParsing="false" onAction="#refreshTable" text="Osveži">
               <graphic>
-                <FontIcon iconColor="WHITE" iconLiteral="mdi-refresh"/>
+                <FontIcon iconColor="WHITE" iconLiteral="mdi-refresh" />
               </graphic>
             </Button>
-            <Pane HBox.hgrow="ALWAYS"/>
-            <Button disable="true" mnemonicParsing="false" onAction="#showUplata" text="UPLATA"
-              fx:id="bUplata"/>
-            <Button disable="true" mnemonicParsing="false" onAction="#showIsplata" text="ISPLATA"
-              fx:id="bISPLATA"/>
-            <Button disable="true" mnemonicParsing="false" onAction="#showPrenos" text="PRENOS"
-              fx:id="bPRENOS"/>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Button fx:id="bUplata" disable="true" mnemonicParsing="false" onAction="#showUplata" text="UPLATA" />
+            <Button fx:id="bISPLATA" disable="true" mnemonicParsing="false" onAction="#showIsplata" text="ISPLATA" />
+            <Button fx:id="bPRENOS" disable="true" mnemonicParsing="false" onAction="#showPrenos" text="PRENOS" />
           </children>
           <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="15.0"/>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="15.0" />
           </padding>
         </HBox>
-        <JFXTreeTableView VBox.vgrow="ALWAYS" fx:id="tblClients">
+        <JFXTreeTableView fx:id="tblClients" VBox.vgrow="ALWAYS">
           <contextMenu>
-            <ContextMenu fx:id="contextMeny"/>
+            <ContextMenu fx:id="contextMeny" />
           </contextMenu>
+               <columnResizePolicy>
+                  <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
         </JFXTreeTableView>
       </children>
     </VBox>

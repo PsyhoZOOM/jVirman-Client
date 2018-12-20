@@ -110,7 +110,7 @@ public class PrenosController implements Initializable {
             if (empty || item == null) {
               setText("");
             } else {
-              setText(String.format("%d %s", item.getBroj(), item.getOpis()));
+              setText(item.getBroj());
             }
           }
         };
@@ -120,7 +120,7 @@ public class PrenosController implements Initializable {
     cmbSifre.setConverter(new StringConverter<SifraPlacanja>() {
       @Override
       public String toString(SifraPlacanja object) {
-        return String.format("%d %s", object.getBroj(), object.getOpis());
+        return object.getBroj();
       }
 
       @Override
@@ -228,11 +228,11 @@ public class PrenosController implements Initializable {
     object.put("mestoPlatioca", clients.getMesto());
     object.put("svrhaPlacanja", tSvrhaPlacanja.getText().trim().toUpperCase());
     object.put("racunPlatioca", lsSaRacuna.getSelectionModel().getSelectedItem().getBrojRacuna());
-    object.put("primalac", lsDobavjac.getSelectionModel().getSelectedItem().getNaziv());
+    object.put("primaoc", lsDobavjac.getSelectionModel().getSelectedItem().getNaziv());
     object.put("mestoPrimaoca", lsDobavjac.getSelectionModel().getSelectedItem().getMesto());
     object.put("racunPrimaoca", lsNaRačun.getSelectionModel().getSelectedItem().getBrojRacuna());
     object.put("sifraPlacanja", cmbSifre.getValue().getBroj());
-    object.put("iznost", Double.valueOf(tIznos.getText().trim()));
+    object.put("iznos", Double.valueOf(tIznos.getText().trim()));
     object.put("modelZaduzenje", tModelPlatioca.getText().trim());
     object.put("pozivNaBrojZaduzenje", tPozivNaBrojPlatioca.getText().trim());
     object.put("modelOdobrenje", tModelPrimaoca.getText().trim());
