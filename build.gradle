@@ -1,0 +1,48 @@
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+
+    }
+}
+apply plugin: 'java'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+apply plugin: 'javafx-gradle-plugin'
+
+dependencies {
+    compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.25.2'
+    compile group: 'org.json', name: 'json', version: '20180813'
+    compile group: 'com.jfoenix', name: 'jfoenix', version: '8.0.8'
+    compile group: 'org.kordamp.ikonli', name: 'ikonli-javafx', version: '2.1.1'
+    compile group: 'org.kordamp.ikonli', name: 'ikonli-elusive-pack', version: '2.1.1'
+    compile group: 'org.kordamp.ikonli', name: 'ikonli-materialdesign-pack', version: '2.1.1'
+}
+
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ["src/main/java"]
+        }
+        resources {
+            srcDirs = ["src/main/resources"]
+        }
+    }
+}
+
+jfx {
+    // minimal requirement for jfxJar-task
+    mainClass = 'com.psyhozoom.virman.Client.Main'
+
+    // minimal requirement for jfxNative-task
+    vendor = 'PsyhoZOOM'
+}

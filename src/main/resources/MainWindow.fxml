@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@main.css"
+  xmlns="http://javafx.com/javafx/8.0.171"
+  fx:controller="com.psyhozoom.virman.Client.Controllers.MainWindowController">
+  <children>
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+      AnchorPane.topAnchor="0.0" prefHeight="800.0" prefWidth="1280.0">
+      <children>
+        <MenuBar fx:id="menuBar">
+          <menus>
+            <Menu mnemonicParsing="false" text="Program">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#exitApp" text="Kraj" fx:id="mExit"/>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Klijenti" fx:id="mClientOptions">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Nov" fx:id="mClientNov"/>
+                <MenuItem mnemonicParsing="false" text="Izmeni" fx:id="mClientIzmeni"/>
+                <MenuItem mnemonicParsing="false" text="Obrisi" fx:id="mClientIzbrisi"/>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Šifre">
+              <items>
+                <MenuItem mnemonicParsing="false" text="ŠIfre Plaćanja" fx:id="mSifrePlacanja"/>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Izveštaji">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#prikaziIzvestaj"
+                  text="Prikaži izveštaje" fx:id="mPrikaziIzvestaje"/>
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Pomoć">
+              <items>
+                <MenuItem mnemonicParsing="false" text="About"/>
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <children>
+            <JFXTextField alignment="CENTER" labelFloat="true" minWidth="250.0"
+              promptText="Pretraga" fx:id="tSearch"/>
+            <Button mnemonicParsing="false" onAction="#refreshTable" text="Osveži" fx:id="bOsvezi">
+              <graphic>
+                <FontIcon iconColor="WHITE" iconLiteral="mdi-refresh"/>
+              </graphic>
+            </Button>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button disable="true" mnemonicParsing="false" onAction="#showUplata" text="UPLATA"
+              fx:id="bUplata"/>
+            <Button disable="true" mnemonicParsing="false" onAction="#showIsplata" text="ISPLATA"
+              fx:id="bISPLATA"/>
+            <Button disable="true" mnemonicParsing="false" onAction="#showPrenos" text="PRENOS"
+              fx:id="bPRENOS"/>
+          </children>
+          <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="15.0"/>
+          </padding>
+        </HBox>
+        <JFXTreeTableView VBox.vgrow="ALWAYS" fx:id="tblClients">
+          <contextMenu>
+            <ContextMenu fx:id="contextMeny"/>
+          </contextMenu>
+        </JFXTreeTableView>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@main.css"
+  xmlns="http://javafx.com/javafx/8.0.171"
+  fx:controller="com.psyhozoom.virman.Client.Controllers.NewClientController">
+  <children>
+    <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+      AnchorPane.topAnchor="0.0" alignment="CENTER">
+      <children>
+        <HBox VBox.vgrow="NEVER" alignment="CENTER" spacing="5.0">
+          <children>
+            <Label text="KLIJENT"/>
+          </children>
+          <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+          </padding>
+        </HBox>
+        <Separator prefWidth="200.0"/>
+        <HBox VBox.vgrow="NEVER" spacing="5.0">
+          <children>
+            <VBox HBox.hgrow="ALWAYS" alignment="CENTER" fillWidth="false" spacing="20.0">
+              <children>
+                <JFXTextField alignment="BOTTOM_CENTER" labelFloat="true" minWidth="250.0"
+                  promptText="NAZIV" fx:id="tNaziv"/>
+                <JFXTextField alignment="BOTTOM_CENTER" labelFloat="true" minWidth="250.0"
+                  promptText="IME VLASNIKA" fx:id="tImeVlasnika"/>
+                <JFXTextField alignment="BOTTOM_CENTER" labelFloat="true" minWidth="250.0"
+                  promptText="MESTO" fx:id="tMesto"/>
+                <JFXTextField alignment="BOTTOM_CENTER" labelFloat="true" minWidth="250.0"
+                  promptText="TEL1" fx:id="tTel1"/>
+                <JFXTextField alignment="BOTTOM_CENTER" labelFloat="true" minWidth="250.0"
+                  promptText="TEL2" fx:id="tTel2"/>
+              </children>
+              <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="20.0"/>
+              </padding>
+            </VBox>
+            <VBox spacing="20.0">
+              <children>
+                <JFXTextArea VBox.vgrow="ALWAYS" labelFloat="true" promptText="KOMENTAR"
+                  fx:id="taKomentar"/>
+              </children>
+              <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="20.0"/>
+              </padding>
+            </VBox>
+          </children>
+          <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+          </padding>
+        </HBox>
+        <HBox VBox.vgrow="NEVER" alignment="CENTER_RIGHT" spacing="5.0">
+          <children>
+            <JFXButton onAction="#saveClient" text="Snimi" fx:id="bSnimi"/>
+          </children>
+          <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+          </padding>
+        </HBox>
+      </children>
+    </VBox>
+  </children>
+</AnchorPane>
