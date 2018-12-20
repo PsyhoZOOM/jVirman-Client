@@ -177,6 +177,7 @@ public class IzvestajiController implements Initializable {
     TreeItem<Izvestaji> root = new RecursiveTreeItem<Izvestaji>(list,
         RecursiveTreeObject::getChildren);
     tblIzvestaj.setRoot(root);
+    tblIzvestaj.setShowRoot(false);
 
 
   }
