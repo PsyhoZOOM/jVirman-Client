@@ -94,7 +94,7 @@ public class IzvestajiController implements Initializable {
     cDatum.setCellValueFactory(new TreeItemPropertyValueFactory<>("date"));
     cVirman.setCellValueFactory(new TreeItemPropertyValueFactory<>("virman"));
     cKlijent.setCellValueFactory(new TreeItemPropertyValueFactory<>("platioc"));
-    cDobavljac.setCellValueFactory(new TreeItemPropertyValueFactory<>("primalac"));
+    cDobavljac.setCellValueFactory(new TreeItemPropertyValueFactory<>("primaoc"));
     cRacunPlatioca.setCellValueFactory(new TreeItemPropertyValueFactory<>("racunPlatioca"));
     cRacunPrimaoca.setCellValueFactory(new TreeItemPropertyValueFactory<>("racunPrimaoca"));
     cSifraPlacanja.setCellValueFactory(new TreeItemPropertyValueFactory<>("sifraPlacanja"));
@@ -168,7 +168,7 @@ public class IzvestajiController implements Initializable {
       izvestaji.setModelZaduzenje(zad.getString("modelZaduzenje"));
       izvestaji.setModelOdobrenje(zad.getString("modelOdobrenje"));
       izvestaji.setPozivNaBrojOdobrenje(zad.getString("pozivNaBrojOdobrenje"));
-      izvestaji.setPozivNaBrojZaduzenje(zad.getString("pozivNaBrojOdobrenje"));
+      izvestaji.setPozivNaBrojZaduzenje(zad.getString("pozivNaBrojZaduzenje"));
       izvestaji.setSvrhaPlacanja(zad.getString("svrhaPlacanja"));
       izvestajiArrayList.add(izvestaji);
     }

@@ -236,7 +236,7 @@ public class PrenosController implements Initializable {
     object.put("modelZaduzenje", tModelPlatioca.getText().trim());
     object.put("pozivNaBrojZaduzenje", tPozivNaBrojPlatioca.getText().trim());
     object.put("modelOdobrenje", tModelPrimaoca.getText().trim());
-    object.put("pozivNaBrojOdobrenje", tModelPlatioca.getText().trim());
+    object.put("pozivNaBrojOdobrenje", tPozivNaBrojPrimaoca.getText().trim());
 
     object = client.send(object);
 
