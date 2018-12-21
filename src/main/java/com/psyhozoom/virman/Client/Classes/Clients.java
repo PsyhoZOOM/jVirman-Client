@@ -1,8 +1,7 @@
 package com.psyhozoom.virman.Client.Classes;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-public class Clients extends RecursiveTreeObject<Clients> {
+public class Clients {
 
   int id;
   String naziv;

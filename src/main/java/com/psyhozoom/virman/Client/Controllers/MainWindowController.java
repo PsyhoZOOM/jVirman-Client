@@ -1,11 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextField;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Clients;
@@ -13,7 +7,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-import java.util.function.Predicate;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -30,14 +23,13 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableCell;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -45,9 +37,8 @@ import org.json.JSONObject;
 
 public class MainWindowController implements Initializable {
 
-  public JFXTextField tSearch;
-  public JFXButton bRefresh;
-  public JFXTreeTableView<Clients> tblClients;
+  public TextField tSearch;
+  public TableView<Clients> tblClients;
   public MenuBar menuBar;
   public Menu mClientOptions;
   public ContextMenu contextMeny;
@@ -60,76 +51,56 @@ public class MainWindowController implements Initializable {
   public Button bISPLATA;
   public Button bPRENOS;
   //table columns
-  JFXTreeTableColumn<Clients, String> cNazivFirme;
-  JFXTreeTableColumn<Clients, String> cImeVlasnika;
-  JFXTreeTableColumn<Clients, String> cMesto;
-  JFXTreeTableColumn<Clients, String> cTel1;
-  JFXTreeTableColumn<Clients, String> cTel2;
+  TableColumn<Clients, String> cNazivFirme;
+  TableColumn<Clients, String> cImeVlasnika;
+  TableColumn<Clients, String> cMesto;
+  TableColumn<Clients, String> cTel1;
+  TableColumn<Clients, String> cTel2;
   private URL location;
   private ResourceBundle resources;
   private Client client;
+  private ArrayList<Clients> clientsArrayList;
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     this.location = location;
     this.resources = resources;
 
-    cNazivFirme = new JFXTreeTableColumn<>("NAZIV");
-    cImeVlasnika = new JFXTreeTableColumn<>("IME VLASNIKA");
-    cMesto = new JFXTreeTableColumn<>("MESTO");
-    cTel1 = new JFXTreeTableColumn<>("TEL1");
-    cTel2 = new JFXTreeTableColumn<>("TEL2");
+    cNazivFirme = new TableColumn("NAZIV");
+    cImeVlasnika = new TableColumn("IME VLASNIKA");
+    cMesto = new TableColumn<>("MESTO");
+    cTel1 = new TableColumn<>("TEL1");
+    cTel2 = new TableColumn<>("TEL2");
 
-    cNazivFirme.setCellValueFactory(new TreeItemPropertyValueFactory<Clients, String>("naziv"));
+    cNazivFirme.setCellValueFactory(new PropertyValueFactory<Clients, String>("naziv"));
     cImeVlasnika
-        .setCellValueFactory(new TreeItemPropertyValueFactory<Clients, String>("imeVlasnika"));
-    cMesto.setCellValueFactory(new TreeItemPropertyValueFactory<Clients, String>("mesto"));
-    cTel1.setCellValueFactory(new TreeItemPropertyValueFactory<Clients, String>("tel1"));
-    cTel2.setCellValueFactory(new TreeItemPropertyValueFactory<Clients, String>("tel2"));
+        .setCellValueFactory(new PropertyValueFactory<Clients, String>("imeVlasnika"));
+    cMesto.setCellValueFactory(new PropertyValueFactory<Clients, String>("mesto"));
+    cTel1.setCellValueFactory(new PropertyValueFactory<Clients, String>("tel1"));
+    cTel2.setCellValueFactory(new PropertyValueFactory<Clients, String>("tel2"));
 
     cNazivFirme.setCellFactory(
-        new Callback<TreeTableColumn<Clients, String>, TreeTableCell<Clients, String>>() {
+        new Callback<TableColumn<Clients, String>, TableCell<Clients, String>>() {
           @Override
-          public TreeTableCell<Clients, String> call(TreeTableColumn<Clients, String> param) {
-            TreeTableCell<Clients, String> cell = new TreeTableCell<Clients, String>() {
+          public TableCell<Clients, String> call(TableColumn<Clients, String> param) {
+            return new TableCell<Clients, String>() {
               @Override
               protected void updateItem(String item, boolean empty) {
                 super.updateItem(item, empty);
                 if (empty || item == null) {
-                  setText("");
+                  setText(null);
                 } else {
                   setText(item);
                 }
               }
             };
-            cell.setStyle("-fx-alignment: CENTER;");
-            return cell;
           }
         });
 
-    tSearch.textProperty().addListener(new ChangeListener<String>() {
-      @Override
-      public void changed(ObservableValue<? extends String> observable, String oldValue,
-          String newValue) {
-
-        tblClients.setPredicate(new Predicate<TreeItem<Clients>>() {
-          @Override
-          public boolean test(TreeItem<Clients> treeItem) {
-            return treeItem.getValue().getImeVlasnika().toString().toLowerCase().contains(newValue)
-                ||
-                treeItem.getValue().getNaziv().toString().toLowerCase().contains(newValue) ||
-                treeItem.getValue().getTel1().toString().toLowerCase().contains(newValue) ||
-                treeItem.getValue().getTel2().toString().toLowerCase().contains(newValue) ||
-                treeItem.getValue().getImeVlasnika().toString().toLowerCase().contains(newValue);
-          }
-        });
-      }
-
-    });
 
     tSearch.setOnKeyPressed((event -> {
       if (event.getCode() == KeyCode.ENTER) {
-        refreshTable(null);
+        refreshTableSearch(tSearch.getText().trim().toLowerCase());
       }
     }));
 
@@ -152,16 +123,8 @@ public class MainWindowController implements Initializable {
     }));
 
     tblClients.getColumns().addAll(cNazivFirme, cImeVlasnika, cMesto, cTel1, cTel2);
-    tblClients.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
+    tblClients.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-    tblClients.setOnMouseClicked(new EventHandler<MouseEvent>() {
-      @Override
-      public void handle(MouseEvent event) {
-        if (event.getClickCount() == 2) {
-          editClient(tblClients.getSelectionModel().getSelectedItem());
-        }
-      }
-    });
     tblClients.setOnKeyReleased(new EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent event) {
@@ -192,10 +155,10 @@ public class MainWindowController implements Initializable {
     });
 
     tblClients.getSelectionModel().selectedItemProperty().addListener(
-        new ChangeListener<TreeItem<Clients>>() {
+        new ChangeListener<Clients>() {
           @Override
-          public void changed(ObservableValue<? extends TreeItem<Clients>> observable,
-              TreeItem<Clients> oldValue, TreeItem<Clients> newValue) {
+          public void changed(ObservableValue<? extends Clients> observable, Clients oldValue,
+              Clients newValue) {
             if (newValue != null) {
               bISPLATA.setDisable(false);
               bUplata.setDisable(false);
@@ -211,19 +174,36 @@ public class MainWindowController implements Initializable {
 
   }
 
+  private void refreshTableSearch(String s) {
+    ArrayList<Clients> clients = new ArrayList<>();
+    for (Clients clsS : clientsArrayList) {
+      if (
+          clsS.getNaziv().toLowerCase().trim().contains(s.toLowerCase().trim()) ||
+              clsS.getMesto().toLowerCase().trim().contains(s.toLowerCase().trim()) ||
+              clsS.getImeVlasnika().toLowerCase().trim().contains(s.toLowerCase().trim())
+          ) {
+        clients.add(clsS);
+      }
+    }
+
+    tblClients.setItems(FXCollections.observableArrayList(clients));
+
+  }
+
   private void deleteClient() {
+
     if (tblClients.getSelectionModel().getSelectedIndex() == -1) {
       return;
     }
     boolean brisanje_klijenta = AlertUser
         .yesNo("BRISANJE KLIJENTA", String.format("DA LI STE SIGURNI DA ŽELITE DA IZBRIŠITE "
                 + "KLIJENTA \"%s\"?",
-            tblClients.getSelectionModel().getSelectedItem().getValue().getNaziv()));
+            tblClients.getSelectionModel().getSelectedItem().getNaziv()));
     if (!brisanje_klijenta) {
       return;
     }
 
-    int clientID = tblClients.getSelectionModel().getSelectedItem().getValue().getId();
+    int clientID = tblClients.getSelectionModel().getSelectedItem().getId();
     JSONObject object = new JSONObject();
     object.put("action", "deleteClient");
     object.put("clientID", clientID);
@@ -260,7 +240,7 @@ public class MainWindowController implements Initializable {
 
   }
 
-  private void editClient(TreeItem<Clients> newValue) {
+  private void editClient(Clients newValue) {
     FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("EditClient.fxml"));
     Parent root = null;
     try {
@@ -270,7 +250,7 @@ public class MainWindowController implements Initializable {
     }
     EditClientController editClientController = loader.getController();
     editClientController.setClient(this.client);
-    editClientController.setEditClient(newValue.getValue());
+    editClientController.setEditClient(newValue);
     editClientController.initData();
     Stage stage = new Stage();
     stage.setTitle("IZMENA KLIJENTA");
@@ -343,15 +323,13 @@ public class MainWindowController implements Initializable {
     if (cliensArrayList.size() > 0) {
       setTableData(cliensArrayList);
     }
+    this.clientsArrayList = cliensArrayList;
 
   }
 
   private void setTableData(ArrayList<Clients> cliensArrayList) {
-    ObservableList list = FXCollections.observableList(cliensArrayList);
-    TreeItem<Clients> trClients = new RecursiveTreeItem<Clients>(list,
-        RecursiveTreeObject::getChildren);
-    tblClients.setShowRoot(false);
-    tblClients.setRoot(trClients);
+    ObservableList list = FXCollections.observableArrayList(cliensArrayList);
+    tblClients.setItems(list);
 
   }
 
@@ -377,7 +355,7 @@ public class MainWindowController implements Initializable {
     }
     UplataController uplataController = loader.getController();
     uplataController.setClient(this.client);
-    uplataController.setClientID(tblClients.getSelectionModel().getSelectedItem().getValue());
+    uplataController.setClientID(tblClients.getSelectionModel().getSelectedItem());
     uplataController.initData();
     Stage stage = new Stage();
     stage.setTitle("UPLATA");
@@ -405,7 +383,7 @@ public class MainWindowController implements Initializable {
 
     IsplataController isplataController = loader.getController();
     isplataController.setClient(this.client);
-    isplataController.setClientID(tblClients.getSelectionModel().getSelectedItem().getValue());
+    isplataController.setClientID(tblClients.getSelectionModel().getSelectedItem());
     isplataController.initData();
 
     Stage stage = new Stage();
@@ -434,7 +412,7 @@ public class MainWindowController implements Initializable {
     }
 
     PrenosController prenosController = loader.getController();
-    prenosController.setClientID(tblClients.getSelectionModel().getSelectedItem().getValue());
+    prenosController.setClientID(tblClients.getSelectionModel().getSelectedItem());
     prenosController.setClient(this.client);
     prenosController.initData();
 

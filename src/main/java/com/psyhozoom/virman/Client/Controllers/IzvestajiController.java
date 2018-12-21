@@ -1,10 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Izvestaji;
@@ -19,35 +14,35 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableCell;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableView;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import org.json.JSONObject;
 
 public class IzvestajiController implements Initializable {
 
-  public JFXDatePicker dtpDatum;
+  public DatePicker dtpDatum;
   public Button bRefresh;
   public MenuItem cmIzbrisi;
-  public JFXTreeTableView<Izvestaji> tblIzvestaj;
-  private JFXTreeTableColumn<Izvestaji, String> cDatum;
-  private JFXTreeTableColumn<Izvestaji, String> cVirman;
-  private JFXTreeTableColumn<Izvestaji, String> cKlijent;
-  private JFXTreeTableColumn<Izvestaji, String> cDobavljac;
-  private JFXTreeTableColumn<Izvestaji, String> cRacunPlatioca;
-  private JFXTreeTableColumn<Izvestaji, String> cRacunPrimaoca;
-  private JFXTreeTableColumn<Izvestaji, String> cSifraPlacanja;
-  private JFXTreeTableColumn<Izvestaji, String> cModelZaduzenje;
-  private JFXTreeTableColumn<Izvestaji, String> cModelOdobrenje;
-  private JFXTreeTableColumn<Izvestaji, String> cPozivNaBrojZaduzenje;
-  private JFXTreeTableColumn<Izvestaji, String> cPozivNaBrojOdobrenje;
-  private JFXTreeTableColumn<Izvestaji, String> cSvrhaPlacanja;
-  private JFXTreeTableColumn<Izvestaji, Double> cIznos;
+  public TableView<Izvestaji> tblIzvestaj;
+  private TableColumn<Izvestaji, String> cDatum;
+  private TableColumn<Izvestaji, String> cVirman;
+  private TableColumn<Izvestaji, String> cKlijent;
+  private TableColumn<Izvestaji, String> cDobavljac;
+  private TableColumn<Izvestaji, String> cRacunPlatioca;
+  private TableColumn<Izvestaji, String> cRacunPrimaoca;
+  private TableColumn<Izvestaji, String> cSifraPlacanja;
+  private TableColumn<Izvestaji, String> cModelZaduzenje;
+  private TableColumn<Izvestaji, String> cModelOdobrenje;
+  private TableColumn<Izvestaji, String> cPozivNaBrojZaduzenje;
+  private TableColumn<Izvestaji, String> cPozivNaBrojOdobrenje;
+  private TableColumn<Izvestaji, String> cSvrhaPlacanja;
+  private TableColumn<Izvestaji, Double> cIznos;
 
 
   private DecimalFormat df = new DecimalFormat("###,###,###.00");
@@ -77,35 +72,35 @@ public class IzvestajiController implements Initializable {
       }
     });
 
-    cDatum = new JFXTreeTableColumn<>("DATUM");
-    cVirman = new JFXTreeTableColumn<>("NALOG");
-    cKlijent = new JFXTreeTableColumn<>("PLATIOC");
-    cDobavljac = new JFXTreeTableColumn<>("PRIMAOC");
-    cRacunPlatioca = new JFXTreeTableColumn<>("RAČUN PLATIOCA");
-    cRacunPrimaoca = new JFXTreeTableColumn<>("RAČUN PRIMAOCA");
-    cSifraPlacanja = new JFXTreeTableColumn<>("ŠIFRA PLAĆANJA");
-    cModelZaduzenje = new JFXTreeTableColumn<>("MODEL ZADUŽENJA");
-    cPozivNaBrojZaduzenje = new JFXTreeTableColumn<>("POZIV NA BROJ ZADUŽENJE");
-    cModelOdobrenje = new JFXTreeTableColumn<>("MODEL ODOBRENJA");
-    cPozivNaBrojOdobrenje = new JFXTreeTableColumn<>("POZIV NA BROJ ODOBRENJE");
-    cSvrhaPlacanja = new JFXTreeTableColumn<>("SVRHA PLAĆANJA");
-    cIznos = new JFXTreeTableColumn<>("IZNOS");
+    cDatum = new TableColumn<>("DATUM");
+    cVirman = new TableColumn<>("NALOG");
+    cKlijent = new TableColumn<>("PLATIOC");
+    cDobavljac = new TableColumn<>("PRIMAOC");
+    cRacunPlatioca = new TableColumn<>("RAČUN PLATIOCA");
+    cRacunPrimaoca = new TableColumn<>("RAČUN PRIMAOCA");
+    cSifraPlacanja = new TableColumn<>("ŠIFRA PLAĆANJA");
+    cModelZaduzenje = new TableColumn<>("MODEL ZADUŽENJA");
+    cPozivNaBrojZaduzenje = new TableColumn<>("POZIV NA BROJ ZADUŽENJE");
+    cModelOdobrenje = new TableColumn<>("MODEL ODOBRENJA");
+    cPozivNaBrojOdobrenje = new TableColumn<>("POZIV NA BROJ ODOBRENJE");
+    cSvrhaPlacanja = new TableColumn<>("SVRHA PLAĆANJA");
+    cIznos = new TableColumn<>("IZNOS");
 
-    cDatum.setCellValueFactory(new TreeItemPropertyValueFactory<>("date"));
-    cVirman.setCellValueFactory(new TreeItemPropertyValueFactory<>("virman"));
-    cKlijent.setCellValueFactory(new TreeItemPropertyValueFactory<>("platioc"));
-    cDobavljac.setCellValueFactory(new TreeItemPropertyValueFactory<>("primaoc"));
-    cRacunPlatioca.setCellValueFactory(new TreeItemPropertyValueFactory<>("racunPlatioca"));
-    cRacunPrimaoca.setCellValueFactory(new TreeItemPropertyValueFactory<>("racunPrimaoca"));
-    cSifraPlacanja.setCellValueFactory(new TreeItemPropertyValueFactory<>("sifraPlacanja"));
-    cModelZaduzenje.setCellValueFactory(new TreeItemPropertyValueFactory<>("modelZaduzenje"));
+    cDatum.setCellValueFactory(new PropertyValueFactory("date"));
+    cVirman.setCellValueFactory(new PropertyValueFactory("virman"));
+    cKlijent.setCellValueFactory(new PropertyValueFactory("platioc"));
+    cDobavljac.setCellValueFactory(new PropertyValueFactory("primaoc"));
+    cRacunPlatioca.setCellValueFactory(new PropertyValueFactory("racunPlatioca"));
+    cRacunPrimaoca.setCellValueFactory(new PropertyValueFactory("racunPrimaoca"));
+    cSifraPlacanja.setCellValueFactory(new PropertyValueFactory("sifraPlacanja"));
+    cModelZaduzenje.setCellValueFactory(new PropertyValueFactory("modelZaduzenje"));
     cPozivNaBrojZaduzenje
-        .setCellValueFactory(new TreeItemPropertyValueFactory<>("pozivNaBrojZaduzenje"));
-    cModelOdobrenje.setCellValueFactory(new TreeItemPropertyValueFactory<>("modelOdobrenje"));
+        .setCellValueFactory(new PropertyValueFactory("pozivNaBrojZaduzenje"));
+    cModelOdobrenje.setCellValueFactory(new PropertyValueFactory("modelOdobrenje"));
     cPozivNaBrojOdobrenje
-        .setCellValueFactory(new TreeItemPropertyValueFactory<>("pozivNaBrojOdobrenje"));
-    cSvrhaPlacanja.setCellValueFactory(new TreeItemPropertyValueFactory<>("svrhaPlacanja"));
-    cIznos.setCellValueFactory(new TreeItemPropertyValueFactory<>("iznos"));
+        .setCellValueFactory(new PropertyValueFactory("pozivNaBrojOdobrenje"));
+    cSvrhaPlacanja.setCellValueFactory(new PropertyValueFactory("svrhaPlacanja"));
+    cIznos.setCellValueFactory(new PropertyValueFactory("iznos"));
 
     tblIzvestaj.getColumns()
         .addAll(cDatum, cVirman, cKlijent, cDobavljac, cRacunPlatioca, cRacunPrimaoca,
@@ -114,10 +109,10 @@ public class IzvestajiController implements Initializable {
             cSvrhaPlacanja, cIznos);
 
     cIznos.setCellFactory(
-        new Callback<TreeTableColumn<Izvestaji, Double>, TreeTableCell<Izvestaji, Double>>() {
+        new Callback<TableColumn<Izvestaji, Double>, TableCell<Izvestaji, Double>>() {
           @Override
-          public TreeTableCell<Izvestaji, Double> call(TreeTableColumn<Izvestaji, Double> param) {
-            return new TreeTableCell<Izvestaji, Double>() {
+          public TableCell<Izvestaji, Double> call(TableColumn<Izvestaji, Double> param) {
+            return new TableCell<Izvestaji, Double>() {
               @Override
               protected void updateItem(Double item, boolean empty) {
                 super.updateItem(item, empty);
@@ -131,7 +126,9 @@ public class IzvestajiController implements Initializable {
           }
         });
 
-    tblIzvestaj.setColumnResizePolicy(TreeTableView.CONSTRAINED_RESIZE_POLICY);
+    tblIzvestaj.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+    dtpDatum.setValue(LocalDate.now());
 
 
   }
@@ -173,12 +170,9 @@ public class IzvestajiController implements Initializable {
       izvestajiArrayList.add(izvestaji);
     }
 
-    ObservableList list = FXCollections.observableList(izvestajiArrayList);
-    TreeItem<Izvestaji> root = new RecursiveTreeItem<Izvestaji>(list,
-        RecursiveTreeObject::getChildren);
-    tblIzvestaj.setRoot(root);
-    tblIzvestaj.setShowRoot(false);
+    ObservableList list = FXCollections.observableArrayList(izvestajiArrayList);
 
+    tblIzvestaj.setItems(list);
 
   }
 

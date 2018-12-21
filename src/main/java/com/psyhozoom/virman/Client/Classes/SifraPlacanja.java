@@ -1,10 +1,9 @@
 package com.psyhozoom.virman.Client.Classes;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 import java.util.ArrayList;
 import org.json.JSONObject;
 
-public class SifraPlacanja extends RecursiveTreeObject<SifraPlacanja> {
+public class SifraPlacanja {
 
   private int id;
   private String broj;

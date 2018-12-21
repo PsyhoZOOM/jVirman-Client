@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextArea?>
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -16,15 +16,15 @@
       <children>
         <HBox VBox.vgrow="ALWAYS" spacing="20.0">
           <children>
-            <JFXTextField labelFloat="true" promptText="SIFRA" fx:id="tBrojSifre">
+            <TextField promptText="SIFRA" fx:id="tBrojSifre">
               <HBox.margin>
                 <Insets/>
               </HBox.margin>
-            </JFXTextField>
+            </TextField>
             <VBox spacing="20.0">
               <children>
-                <JFXTextField labelFloat="true" promptText="OPIS" fx:id="tOpis"/>
-                <JFXTextArea labelFloat="true" promptText="DUZI OPIS" fx:id="tDuziOpis"/>
+                <TextField promptText="OPIS" fx:id="tOpis"/>
+                <TextArea promptText="DUZI OPIS" fx:id="tDuziOpis"/>
               </children>
               <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>

@@ -1,8 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Racuni;
@@ -11,16 +8,18 @@ import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import org.json.JSONObject;
 
 public class RacuniClient implements Initializable {
 
-  public JFXTextField tRacun;
-  public JFXButton bAdd;
-  public JFXListView<Racuni> listRacuni;
+  public TextField tRacun;
+  public Button bAdd;
+  public ListView<Racuni> listRacuni;
   private URL location;
   private ResourceBundle resources;
   private Client client;

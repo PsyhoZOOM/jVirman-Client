@@ -1,6 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.Database;
 import com.psyhozoom.virman.Client.Classes.Settings;
 import java.net.URL;
@@ -10,13 +9,14 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class SettingsController implements Initializable {
 
-  public JFXTextField tPortNumber;
-  public JFXTextField tHostaName;
-  public JFXTextField tUserName;
+  public TextField tPortNumber;
+  public TextField tHostaName;
+  public TextField tUserName;
   private URL location;
   private ResourceBundle resources;
   private Settings settings;

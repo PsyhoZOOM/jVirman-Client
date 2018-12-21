@@ -1,9 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Clients;
@@ -17,21 +13,24 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import org.json.JSONObject;
 
 public class IsplataController implements Initializable {
 
-  public JFXTextArea tSvrhaPlacanja;
-  public JFXComboBox<SifraPlacanja> cmbSifra;
-  public JFXTextField tModel;
-  public JFXTextField tPozivNaBroj;
-  public JFXListView<Racuni> lsNaRacun;
+  public TextArea tSvrhaPlacanja;
+  public ComboBox<SifraPlacanja> cmbSifra;
+  public TextField tModel;
+  public TextField tPozivNaBroj;
+  public ListView<Racuni> lsNaRacun;
   public Button bStampa;
-  public JFXTextField tIznos;
+  public TextField tIznos;
   private Client client;
   private Clients clients;
 

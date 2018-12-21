@@ -11,7 +11,7 @@ import org.json.JSONObject;
 public class Stampa {
 
   private PrinterJob printerJob;
-  Font font = Font.loadFont(getClass().getResource("/font/saxmono.ttf").toExternalForm(), 6);
+  Font font = Font.loadFont(getClass().getResource("/font/saxmono.ttf").toExternalForm(), 10);
 
 
   private void stampaj(AnchorPane anchorPane, Window wind) {

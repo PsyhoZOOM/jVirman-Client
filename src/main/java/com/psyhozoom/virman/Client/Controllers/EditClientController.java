@@ -1,9 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Clients;
@@ -18,8 +14,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -27,18 +26,18 @@ import org.json.JSONObject;
 
 public class EditClientController implements Initializable {
 
-  public JFXTextField tNaziv;
-  public JFXTextField tImeVlasnika;
-  public JFXTextField tMesto;
-  public JFXTextField tTel1;
-  public JFXTextField tTel2;
-  public JFXTextArea tKomentar;
-  public JFXButton bRacuni;
-  public JFXButton bSnimi;
-  public JFXButton bNovDobavljac;
-  public JFXButton bIzmenaDobavljaca;
-  public JFXButton bBrisanje;
-  public JFXListView<Dobavljaci> lsDobavljaci;
+  public TextField tNaziv;
+  public TextField tImeVlasnika;
+  public TextField tMesto;
+  public TextField tTel1;
+  public TextField tTel2;
+  public TextArea tKomentar;
+  public Button bRacuni;
+  public Button bSnimi;
+  public Button bNovDobavljac;
+  public Button bIzmenaDobavljaca;
+  public Button bBrisanje;
+  public ListView<Dobavljaci> lsDobavljaci;
   private URL location;
   private ResourceBundle resource;
   private Client client;

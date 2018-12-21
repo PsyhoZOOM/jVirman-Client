@@ -1,8 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXPasswordField;
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Settings;
 import java.io.IOException;
@@ -13,6 +10,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.json.JSONObject;
@@ -20,10 +20,10 @@ import org.kordamp.ikonli.javafx.FontIcon;
 
 public class LoginController implements Initializable {
 
-  public JFXTextField tUserName;
-  public JFXPasswordField tPassWord;
-  public JFXButton bLogin;
-  public JFXButton bSettings;
+  public TextField tUserName;
+  public PasswordField tPassWord;
+  public Button bLogin;
+  public Button bSettings;
   public FontIcon bSetup;
   private URL location;
   private ResourceBundle resources;

@@ -1,26 +1,26 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
 public class NewClientController implements Initializable {
 
-  public JFXTextField tNaziv;
-  public JFXTextField tImeVlasnika;
-  public JFXTextField tMesto;
-  public JFXTextField tTel1;
-  public JFXTextField tTel2;
-  public JFXTextArea taKomentar;
-  public JFXButton bSnimi;
+  public TextField tNaziv;
+  public TextField tImeVlasnika;
+  public TextField tMesto;
+  public TextField tTel1;
+  public TextField tTel2;
+  public TextArea taKomentar;
+  public Button bSnimi;
   private URL location;
   private ResourceBundle resources;
 

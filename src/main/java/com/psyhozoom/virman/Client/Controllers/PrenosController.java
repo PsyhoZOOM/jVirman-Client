@@ -1,9 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXListView;
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.Clients;
@@ -21,8 +17,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
@@ -30,17 +29,17 @@ import org.json.JSONObject;
 
 public class PrenosController implements Initializable {
 
-  public JFXListView<Racuni> lsSaRacuna;
-  public JFXListView<Dobavljaci> lsDobavjac;
-  public JFXListView<Racuni> lsNaRačun;
-  public JFXTextField tModelPlatioca;
-  public JFXTextField tPozivNaBrojPlatioca;
-  public JFXTextArea tSvrhaPlacanja;
-  public JFXTextField tIznos;
-  public JFXTextField tModelPrimaoca;
-  public JFXTextField tPozivNaBrojPrimaoca;
-  public JFXComboBox<SifraPlacanja> cmbSifre;
-  public JFXTextField tSerachDobavljac;
+  public ListView<Racuni> lsSaRacuna;
+  public ListView<Dobavljaci> lsDobavjac;
+  public ListView<Racuni> lsNaRačun;
+  public TextField tModelPlatioca;
+  public TextField tPozivNaBrojPlatioca;
+  public TextArea tSvrhaPlacanja;
+  public TextField tIznos;
+  public TextField tModelPrimaoca;
+  public TextField tPozivNaBrojPrimaoca;
+  public ComboBox<SifraPlacanja> cmbSifre;
+  public TextField tSerachDobavljac;
   public Button bSrtampa;
   private Client client;
   private Clients clients;
@@ -246,7 +245,7 @@ public class PrenosController implements Initializable {
     izvestaji.setPrimaoc(object.getString("primaoc"));
     izvestaji.setMestoPrimaoca(object.getString("mestoPrimaoca"));
     izvestaji.setRacunPrimaoca(object.getString("racunPrimaoca"));
-    izvestaji.setSifraPlacanja(object.getString("sifraPLacanja"));
+    izvestaji.setSifraPlacanja(object.getString("sifraPlacanja"));
     izvestaji.setIznos(object.getDouble("iznos"));
     izvestaji.setModelZaduzenje(object.getString("modelZaduzenje"));
     izvestaji.setPozivNaBrojZaduzenje(object.getString("pozivNaBrojZaduzenje"));

@@ -1,8 +1,7 @@
 package com.psyhozoom.virman.Client.Classes;
 
-import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
 
-public class Izvestaji extends RecursiveTreeObject<Izvestaji> {
+public class Izvestaji {
 
   int id;
   String platioc;

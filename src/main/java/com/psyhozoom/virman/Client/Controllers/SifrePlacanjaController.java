@@ -1,6 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXListView;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import com.psyhozoom.virman.Client.Classes.SifraPlacanja;
@@ -32,7 +31,7 @@ public class SifrePlacanjaController implements Initializable {
   public Button bNov;
   public Label lOpis;
   public Label lDuziOpis;
-  public JFXListView<SifraPlacanja> lsSifre;
+  public ListView<SifraPlacanja> lsSifre;
   Client client;
   private URL location;
   private ResourceBundle resources;

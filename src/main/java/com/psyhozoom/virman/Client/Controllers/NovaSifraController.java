@@ -1,7 +1,5 @@
 package com.psyhozoom.virman.Client.Controllers;
 
-import com.jfoenix.controls.JFXTextArea;
-import com.jfoenix.controls.JFXTextField;
 import com.psyhozoom.virman.Client.Classes.AlertUser;
 import com.psyhozoom.virman.Client.Classes.Client;
 import java.net.URL;
@@ -11,14 +9,16 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
 public class NovaSifraController implements Initializable {
 
-  public JFXTextField tBrojSifre;
-  public JFXTextField tOpis;
-  public JFXTextArea tDuziOpis;
+  public TextField tBrojSifre;
+  public TextField tOpis;
+  public TextArea tDuziOpis;
   public Button bSnimi;
   private URL location;
   private ResourceBundle resoures;
