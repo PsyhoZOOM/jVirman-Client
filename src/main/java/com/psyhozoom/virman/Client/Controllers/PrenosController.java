@@ -41,6 +41,10 @@ public class PrenosController implements Initializable {
   public ComboBox<SifraPlacanja> cmbSifre;
   public TextField tSerachDobavljac;
   public Button bSrtampa;
+  public TextArea tPlatilac;
+  public TextArea tPrimalac;
+  public TextField tRacunPlatioca;
+  public TextField tRacunPrimaoca;
   private Client client;
   private Clients clients;
   private ArrayList<Dobavljaci> dobavljaciArray;
@@ -137,15 +141,45 @@ public class PrenosController implements Initializable {
               Dobavljaci newValue) {
             if (newValue != null) {
               setDobavljacRacune(newValue.getId());
+              setDobavljacData(newValue);
             }
           }
         });
+
+    lsNaRačun.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Racuni>() {
+      @Override
+      public void changed(ObservableValue<? extends Racuni> observable, Racuni oldValue,
+          Racuni newValue) {
+        if (newValue == null) {
+          return;
+        }
+        tRacunPrimaoca.setText(newValue.getBrojRacuna());
+      }
+    });
+
+    lsSaRacuna.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Racuni>() {
+      @Override
+      public void changed(ObservableValue<? extends Racuni> observable, Racuni oldValue,
+          Racuni newValue) {
+        tRacunPlatioca.setText(newValue.getBrojRacuna());
+        setPlatilacData(clients);
+      }
+    });
+
     tSerachDobavljac.setOnKeyPressed(new EventHandler<KeyEvent>() {
       @Override
       public void handle(KeyEvent event) {
         filterDobavljaci(tSerachDobavljac.getText().toLowerCase().trim());
       }
     });
+  }
+
+  private void setPlatilacData(Clients clients) {
+    tPlatilac.setText(String.format("%s\n%s", clients.getNaziv(), clients.getMesto()));
+  }
+
+  private void setDobavljacData(Dobavljaci newValue) {
+    tPrimalac.setText(String.format("%s\n%s", newValue.getNaziv(), newValue.getMesto()));
   }
 
   private void filterDobavljaci(String trim) {
@@ -231,7 +265,11 @@ public class PrenosController implements Initializable {
     object.put("mestoPrimaoca", lsDobavjac.getSelectionModel().getSelectedItem().getMesto());
     object.put("racunPrimaoca", lsNaRačun.getSelectionModel().getSelectedItem().getBrojRacuna());
     object.put("sifraPlacanja", cmbSifre.getValue().getBroj());
-    object.put("iznos", Double.valueOf(tIznos.getText().trim()));
+    if (tIznos.getText().trim().isEmpty()) {
+      object.put("iznos", 0.00);
+    } else {
+      object.put("iznos", Double.valueOf(tIznos.getText().trim()));
+    }
     object.put("modelZaduzenje", tModelPlatioca.getText().trim());
     object.put("pozivNaBrojZaduzenje", tPozivNaBrojPlatioca.getText().trim());
     object.put("modelOdobrenje", tModelPrimaoca.getText().trim());
@@ -268,4 +306,5 @@ public class PrenosController implements Initializable {
     // Stampa stampa = new Stampa(bSrtampa.getScene().getWindow());
     /// stampa.stampaPrenost(object);
   }
+
 }

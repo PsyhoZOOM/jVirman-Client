@@ -12,8 +12,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@main.css"
-  xmlns="http://javafx.com/javafx/8.0.172"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="467.0" prefWidth="718.0"
+  stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172"
   fx:controller="com.psyhozoom.virman.Client.Controllers.UplataController">
   <children>
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
@@ -21,7 +21,7 @@
       <children>
         <VBox fillWidth="false" spacing="5.0">
           <children>
-            <Label text="Na račun"/>
+            <Label text="račun"/>
             <ListView fx:id="lsNaRacun"/>
           </children>
           <padding>
@@ -110,6 +110,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
           </padding>
         </HBox>
+        <Separator prefWidth="200.0"/>
         <HBox VBox.vgrow="NEVER">
           <children>
             <Pane HBox.hgrow="ALWAYS"/>

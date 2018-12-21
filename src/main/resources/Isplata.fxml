@@ -5,57 +5,115 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" stylesheets="@main.css"
-  xmlns="http://javafx.com/javafx/8.0.171"
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" prefHeight="438.0" prefWidth="850.0"
+  stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.172"
   fx:controller="com.psyhozoom.virman.Client.Controllers.IsplataController">
   <children>
     <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-      AnchorPane.topAnchor="0.0" layoutX="5.0" layoutY="5.0" prefHeight="464.0" prefWidth="899.0"
-      spacing="5.0">
+      AnchorPane.topAnchor="0.0" layoutX="5.0" layoutY="5.0" spacing="5.0">
       <children>
         <HBox>
           <children>
-            <VBox HBox.hgrow="ALWAYS" spacing="5.0">
+            <VBox HBox.hgrow="ALWAYS" fillWidth="false" spacing="5.0">
               <children>
-                <Label text="Na Račun"/>
+                <Label text="Račun"/>
                 <ListView fx:id="lsNaRacun"/>
               </children>
               <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
               </padding>
             </VBox>
-            <VBox HBox.hgrow="ALWAYS" fillWidth="false" spacing="20.0">
+          </children>
+        </HBox>
+        <Separator prefWidth="200.0"/>
+        <HBox VBox.vgrow="NEVER" spacing="10.0">
+          <children>
+            <VBox HBox.hgrow="ALWAYS" spacing="10.0">
               <children>
-                <ComboBox editable="true" promptText="Šifra" fx:id="cmbSifra"/>
-                <TextField alignment="CENTER" minWidth="250.0"
-                  promptText="Model" fx:id="tModel"/>
-                <TextField alignment="CENTER" minWidth="250.0"
-                  promptText="Poziv na broj" fx:id="tPozivNaBroj"/>
-                <HBox VBox.vgrow="NEVER" alignment="CENTER_RIGHT" spacing="5.0">
+                <Label text="platilac"/>
+                <TextArea VBox.vgrow="NEVER" prefColumnCount="25" prefRowCount="2" wrapText="true"
+                  fx:id="tPlatilac"/>
+                <Label text="svrha uplate"/>
+                <TextArea VBox.vgrow="NEVER" prefColumnCount="25" prefRowCount="2"
+                  fx:id="tSvrhaPlacanja"/>
+                <Label text="primalac"/>
+                <TextArea prefColumnCount="25" prefRowCount="2" fx:id="tPrimalac"/>
+              </children>
+            </VBox>
+            <Separator orientation="VERTICAL" prefHeight="200.0"/>
+            <VBox HBox.hgrow="ALWAYS" spacing="20.0">
+              <children>
+                <HBox VBox.vgrow="NEVER" alignment="TOP_RIGHT">
                   <children>
-                    <TextField alignment="CENTER_RIGHT" promptText="Iznos"
-                      fx:id="tIznos"/>
-                    <Label text="din."/>
+                    <Label text="NALOG ISPLATE"/>
                   </children>
                   <padding>
                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
                   </padding>
                 </HBox>
-                <TextArea prefHeight="172.0" prefWidth="464.0"
-                  promptText="SVRHA PLAĆANJA" fx:id="tSvrhaPlacanja"/>
+                <HBox VBox.vgrow="NEVER" spacing="10.0">
+                  <children>
+                    <VBox HBox.hgrow="NEVER" maxHeight="70.0">
+                      <children>
+                        <Label text="šifra plaćanja"/>
+                        <ComboBox editable="true" maxWidth="70.0" minWidth="-Infinity"
+                          prefWidth="70.0" promptText="Šifra" fx:id="cmbSifra"/>
+                      </children>
+                    </VBox>
+                    <VBox HBox.hgrow="NEVER">
+                      <children>
+                        <Label text="valuta"/>
+                        <TextField maxWidth="70.0" fx:id="tValuta"/>
+                      </children>
+                    </VBox>
+                    <VBox HBox.hgrow="ALWAYS">
+                      <children>
+                        <Label text="iznos"/>
+                        <TextField alignment="CENTER_RIGHT" promptText="Iznos" fx:id="tIznos"/>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox VBox.vgrow="NEVER">
+                  <children>
+                    <VBox HBox.hgrow="ALWAYS" spacing="10.0">
+                      <children>
+                        <Label text="račun primaoca"/>
+                        <TextField fx:id="tRacunPrimaoca"/>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
+                <HBox VBox.vgrow="NEVER">
+                  <children>
+                    <VBox HBox.hgrow="ALWAYS" spacing="10.0">
+                      <children>
+                        <Label text="model i poziv na broj (odobrenje)"/>
+                        <HBox spacing="20.0">
+                          <children>
+                            <TextField alignment="CENTER" maxWidth="70.0" fx:id="tModel"/>
+                            <TextField alignment="CENTER" minWidth="250.0" fx:id="tPozivNaBroj"/>
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                  </children>
+                </HBox>
               </children>
-              <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="20.0"/>
-              </padding>
             </VBox>
           </children>
+          <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+          </padding>
         </HBox>
+        <Separator prefWidth="200.0"/>
         <HBox VBox.vgrow="NEVER">
           <children>
             <Pane HBox.hgrow="ALWAYS"/>

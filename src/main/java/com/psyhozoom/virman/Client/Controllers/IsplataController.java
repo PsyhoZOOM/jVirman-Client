@@ -9,6 +9,8 @@ import com.psyhozoom.virman.Client.Classes.SifraPlacanja;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -31,6 +33,10 @@ public class IsplataController implements Initializable {
   public ListView<Racuni> lsNaRacun;
   public Button bStampa;
   public TextField tIznos;
+  public TextArea tPlatilac;
+  public TextArea tPrimalac;
+  public TextField tValuta;
+  public TextField tRacunPrimaoca;
   private Client client;
   private Clients clients;
 
@@ -92,6 +98,14 @@ public class IsplataController implements Initializable {
       }
     });
 
+    lsNaRacun.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Racuni>() {
+      @Override
+      public void changed(ObservableValue<? extends Racuni> observable, Racuni oldValue,
+          Racuni newValue) {
+        tRacunPrimaoca.setText(newValue.getBrojRacuna().trim());
+      }
+    });
+
   }
 
   public void stampaj(ActionEvent actionEvent) {
@@ -141,6 +155,8 @@ public class IsplataController implements Initializable {
   public void initData() {
     setKlijentRacuni();
     setSifre();
+    tPlatilac.setText(String.format("%s\n%s", clients.getNaziv(), clients.getMesto()));
+    tPrimalac.setText(String.format("%s\n%s", clients.getNaziv(), clients.getMesto()));
   }
 
   private void setSifre() {

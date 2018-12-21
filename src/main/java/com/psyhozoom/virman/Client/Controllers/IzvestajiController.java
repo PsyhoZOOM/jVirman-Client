@@ -45,7 +45,7 @@ public class IzvestajiController implements Initializable {
   private TableColumn<Izvestaji, Double> cIznos;
 
 
-  private DecimalFormat df = new DecimalFormat("###,###,###.00");
+  private DecimalFormat df = new DecimalFormat("###,###,##0.00");
   private DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
   private Client client;
 

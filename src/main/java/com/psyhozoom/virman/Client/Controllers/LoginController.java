@@ -76,8 +76,7 @@ public class LoginController implements Initializable {
     MainWindowController mainWindowController = fxmlLoader.getController();
     mainWindowController.setClient(this.client);
     this.stage.setScene(new Scene(root));
-    stage.setX(0);
-    stage.setY(0);
+    stage.setMaximized(true);
   }
 
   public void openSettings(ActionEvent actionEvent) {
