@@ -1,26 +1,37 @@
 package com.psyhozoom.virman.Client.Classes;
 
+import java.text.DecimalFormat;
 import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer.MarginType;
 import javafx.print.PrinterJob;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.json.JSONObject;
 
 public class Stampa {
 
   private PrinterJob printerJob;
-  Font font = Font.loadFont(getClass().getResource("/font/saxmono.ttf").toExternalForm(), 10);
+  private DecimalFormat dtf = new DecimalFormat("###,###,###,##0.00");
+  // Font font = Font.loadFont(getClass().getResource("font/roboto/saxmono.ttf").toExternalForm(), 10);
 
 
   private void stampaj(AnchorPane anchorPane, Window wind) {
-    System.out.println(font.getSize());
     printerJob = PrinterJob.createPrinterJob();
     if (printerJob != null && printerJob.showPrintDialog(wind)) {
-      PageLayout pageLayout = printerJob.getJobSettings().getPageLayout();
-      anchorPane.setMaxWidth(pageLayout.getPrintableWidth());
-      anchorPane.setMaxHeight(pageLayout.getPrintableHeight());
+      PageLayout pageLayout = printerJob.getPrinter()
+          .createPageLayout(Paper.A4, PageOrientation.PORTRAIT, MarginType.HARDWARE_MINIMUM);
+      anchorPane.setPrefSize(pageLayout.getPrintableWidth(), pageLayout.getPrintableHeight());
+      printerJob.getJobSettings().setPageLayout(pageLayout);
+      System.out.println(printerJob.getPrinter().getName());
+
+
+
       if (printerJob.printPage(pageLayout, anchorPane)) {
         printerJob.endJob();
       } else {
@@ -32,10 +43,12 @@ public class Stampa {
   }
 
   public void stampaUplate(Izvestaji izvestaji, Window wind) {
+    Font font = Font
+        .loadFont(ClassLoader.getSystemResourceAsStream("font/roboto/OpenSans-Regular.ttf"), 12);
     AnchorPane anchorPane = new AnchorPane();
     Text platilac = new Text();
-    platilac.setFont(font);
     platilac.setText(String.format("%s\n%s", izvestaji.getPlatioc(), izvestaji.getMestoPlatioca()));
+    platilac.setFont(font);
 
     Text svrhaUplate = new Text();
     svrhaUplate.setFont(font);
@@ -46,18 +59,60 @@ public class Stampa {
     primalac.setFont(font);
     primalac.setText(String.format("%s\n%s", izvestaji.getPrimaoc(), izvestaji.getMestoPrimaoca()));
 
-    anchorPane.getChildren().addAll(platilac, svrhaUplate, primalac);
+    Text sifraPlacanja = new Text();
+    sifraPlacanja.setFont(font);
+    sifraPlacanja.setText(izvestaji.getSifraPlacanja());
 
-    AnchorPane.setTopAnchor(platilac, 16.0);
-    AnchorPane.setLeftAnchor(platilac, 10.0);
+    Text iznos = new Text();
+    iznos.setFont(font);
+    iznos.setText(dtf.format(izvestaji.getIznos()));
 
-    AnchorPane.setTopAnchor(svrhaUplate, 50.0);
-    AnchorPane.setLeftAnchor(svrhaUplate, 10.0);
+    Text racunPrimaoca = new Text();
+    racunPrimaoca.setFont(font);
+    racunPrimaoca.setText(izvestaji.getRacunPrimaoca());
 
-    AnchorPane.setTopAnchor(primalac, 90.5);
-    AnchorPane.setLeftAnchor(primalac, 10.0);
+    Text modelPozivNaBroj = new Text();
+    modelPozivNaBroj.setFont(font);
+    modelPozivNaBroj.setText(izvestaji.getModelOdobrenje());
+
+    Text odobobrenje = new Text();
+    odobobrenje.setFont(font);
+    odobobrenje.setText(izvestaji.pozivNaBrojOdobrenje);
+
+    anchorPane.getChildren()
+        .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
+            modelPozivNaBroj, odobobrenje);
+
+    AnchorPane.setTopAnchor(platilac, 19.0);
+    AnchorPane.setLeftAnchor(platilac, 17.0);
+
+    AnchorPane.setTopAnchor(svrhaUplate, 100.0);
+    AnchorPane.setLeftAnchor(svrhaUplate, 17.0);
+
+    AnchorPane.setTopAnchor(primalac, 170.0);
+    AnchorPane.setLeftAnchor(primalac, 17.0);
+
+    AnchorPane.setTopAnchor(sifraPlacanja, 33.0);
+    AnchorPane.setLeftAnchor(sifraPlacanja, 305.0);
+
+    AnchorPane.setTopAnchor(iznos, 33.0);
+    AnchorPane.setLeftAnchor(iznos, 420.0);
+
+    AnchorPane.setTopAnchor(racunPrimaoca, 78.0);
+    AnchorPane.setLeftAnchor(racunPrimaoca, 365.0);
+
+    AnchorPane.setTopAnchor(modelPozivNaBroj, 122.0);
+    AnchorPane.setLeftAnchor(modelPozivNaBroj, 305.0);
+
+    AnchorPane.setTopAnchor(odobobrenje, 122.0);
+    AnchorPane.setLeftAnchor(odobobrenje, 370.0);
+
+    Scene scene = new Scene(anchorPane);
+    Stage stage = new Stage();
+    stage.setScene(scene);
+    //stage.showAndWait();
+    anchorPane.getStylesheets().removeAll();
     stampaj(anchorPane, wind);
-
   }
 
   public void stampaIsplate(JSONObject object) {
