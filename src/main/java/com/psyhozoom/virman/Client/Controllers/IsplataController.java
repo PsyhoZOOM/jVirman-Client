@@ -6,6 +6,7 @@ import com.psyhozoom.virman.Client.Classes.Clients;
 import com.psyhozoom.virman.Client.Classes.Izvestaji;
 import com.psyhozoom.virman.Client.Classes.Racuni;
 import com.psyhozoom.virman.Client.Classes.SifraPlacanja;
+import com.psyhozoom.virman.Client.Classes.Stampa;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -123,13 +124,14 @@ public class IsplataController implements Initializable {
     Izvestaji izvestaji = new Izvestaji();
     izvestaji.setRacunPlatioca(object.getString("racunPlatioca"));
     izvestaji.setPlatioc(object.getString("Platioc"));
+    izvestaji.setPrimaoc(object.getString("Platioc"));
     izvestaji.setMestoPrimaoca(object.getString("mesto"));
     izvestaji.setMestoPlatioca(object.getString("mesto"));
     izvestaji.setSvrhaPlacanja(object.getString("svrhaUplate"));
     izvestaji.setSifraPlacanja(object.getString("sifraPlacanja"));
-    izvestaji.setIznos(object.getDouble("iznos"));
+    izvestaji.setIznos(Double.valueOf(tIznos.getText().trim().replace(",", "")));
     izvestaji.setModelZaduzenje(object.getString("modelZaduzenje"));
-    izvestaji.setPozivNaBrojZaduzenje(object.getString("modelPozivNaBrojZaduzenje"));
+    izvestaji.setPozivNaBrojZaduzenje(object.getString("pozivNaBrojZaduzenje"));
 
 
     object = client.send(object);
@@ -144,8 +146,8 @@ public class IsplataController implements Initializable {
       return;
     }
 
-    //Stampa stampa = new Stampa(bStampa.getScene().getWindow());
-    //stampa.stampaIsplate(object);
+    Stampa stampa = new Stampa();
+    stampa.stampaIsplate(izvestaji, bStampa.getScene().getWindow());
   }
 
   public void setClient(Client client) {

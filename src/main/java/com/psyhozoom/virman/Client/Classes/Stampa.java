@@ -92,28 +92,28 @@ public class Stampa {
         .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
             modelPozivNaBroj, odobobrenje);
 
-    AnchorPane.setTopAnchor(platilac, 22.0);
-    AnchorPane.setLeftAnchor(platilac, 17.0);
+    AnchorPane.setTopAnchor(platilac, 25.0);
+    AnchorPane.setLeftAnchor(platilac, 10.0);
 
-    AnchorPane.setTopAnchor(svrhaUplate, 96.0);
-    AnchorPane.setLeftAnchor(svrhaUplate, 17.0);
+    AnchorPane.setTopAnchor(svrhaUplate, 90.0);
+    AnchorPane.setLeftAnchor(svrhaUplate, 10.0);
 
-    AnchorPane.setTopAnchor(primalac, 160.0);
-    AnchorPane.setLeftAnchor(primalac, 17.0);
+    AnchorPane.setTopAnchor(primalac, 145.0);
+    AnchorPane.setLeftAnchor(primalac, 10.0);
 
-    AnchorPane.setTopAnchor(sifraPlacanja, 33.0);
-    AnchorPane.setLeftAnchor(sifraPlacanja, 310.0);
+    AnchorPane.setTopAnchor(sifraPlacanja, 38.0);
+    AnchorPane.setLeftAnchor(sifraPlacanja, 312.0);
 
-    AnchorPane.setTopAnchor(iznos, 33.0);
+    AnchorPane.setTopAnchor(iznos, 38.0);
     AnchorPane.setLeftAnchor(iznos, 430.0);
 
-    AnchorPane.setTopAnchor(racunPrimaoca, 73.0);
-    AnchorPane.setLeftAnchor(racunPrimaoca, 365.0);
+    AnchorPane.setTopAnchor(racunPrimaoca, 75.0);
+    AnchorPane.setLeftAnchor(racunPrimaoca, 340.0);
 
-    AnchorPane.setTopAnchor(modelPozivNaBroj, 122.0);
-    AnchorPane.setLeftAnchor(modelPozivNaBroj, 295.0);
+    AnchorPane.setTopAnchor(modelPozivNaBroj, 110.0);
+    AnchorPane.setLeftAnchor(modelPozivNaBroj, 312.0);
 
-    AnchorPane.setTopAnchor(odobobrenje, 122.0);
+    AnchorPane.setTopAnchor(odobobrenje, 110.0);
     AnchorPane.setLeftAnchor(odobobrenje, 370.0);
 
     Scene scene = new Scene(anchorPane);
@@ -146,44 +146,44 @@ public class Stampa {
     iznos.setFont(font);
     iznos.setText(dtf.format(izvestaji.getIznos()));
 
-    Text racunPrimaoca = new Text();
-    racunPrimaoca.setFont(font);
-    racunPrimaoca.setText(izvestaji.getRacunPrimaoca());
+    Text racunPlatioca = new Text();
+    racunPlatioca.setFont(font);
+    racunPlatioca.setText(izvestaji.getRacunPlatioca());
 
     Text modelPozivNaBroj = new Text();
     modelPozivNaBroj.setFont(font);
-    modelPozivNaBroj.setText(izvestaji.getModelOdobrenje());
+    modelPozivNaBroj.setText(izvestaji.getModelZaduzenje());
 
     Text  zaduzenje = new Text();
     zaduzenje.setFont(font);
-    zaduzenje.setText(izvestaji.pozivNaBrojZaduzenje);
+    zaduzenje.setText(izvestaji.getPozivNaBrojZaduzenje());
 
     anchorPane.getChildren()
-        .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
+        .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPlatioca,
             modelPozivNaBroj, zaduzenje);
 
-    AnchorPane.setTopAnchor(platilac, 19.0);
-    AnchorPane.setLeftAnchor(platilac, 17.0);
+    AnchorPane.setTopAnchor(platilac, 25.0);
+    AnchorPane.setLeftAnchor(platilac, 10.0);
 
-    AnchorPane.setTopAnchor(svrhaUplate, 100.0);
-    AnchorPane.setLeftAnchor(svrhaUplate, 17.0);
+    AnchorPane.setTopAnchor(svrhaUplate, 90.0);
+    AnchorPane.setLeftAnchor(svrhaUplate, 10.0);
 
-    AnchorPane.setTopAnchor(primalac, 170.0);
-    AnchorPane.setLeftAnchor(primalac, 17.0);
+    AnchorPane.setTopAnchor(primalac, 145.0);
+    AnchorPane.setLeftAnchor(primalac, 10.0);
 
-    AnchorPane.setTopAnchor(sifraPlacanja, 33.0);
-    AnchorPane.setLeftAnchor(sifraPlacanja, 305.0);
+    AnchorPane.setTopAnchor(sifraPlacanja, 38.0);
+    AnchorPane.setLeftAnchor(sifraPlacanja, 312.0);
 
-    AnchorPane.setTopAnchor(iznos, 33.0);
-    AnchorPane.setLeftAnchor(iznos, 420.0);
+    AnchorPane.setTopAnchor(iznos, 38.0);
+    AnchorPane.setLeftAnchor(iznos, 430.0);
 
-    AnchorPane.setTopAnchor(racunPrimaoca, 78.0);
-    AnchorPane.setLeftAnchor(racunPrimaoca, 365.0);
+    AnchorPane.setTopAnchor(racunPlatioca, 75.0);
+    AnchorPane.setLeftAnchor(racunPlatioca, 340.0);
 
-    AnchorPane.setTopAnchor(modelPozivNaBroj, 122.0);
-    AnchorPane.setLeftAnchor(modelPozivNaBroj, 305.0);
+    AnchorPane.setTopAnchor(modelPozivNaBroj, 110.0);
+    AnchorPane.setLeftAnchor(modelPozivNaBroj, 312.0);
 
-    AnchorPane.setTopAnchor(zaduzenje, 122.0);
+    AnchorPane.setTopAnchor(zaduzenje, 110.0);
     AnchorPane.setLeftAnchor(zaduzenje, 370.0);
 
     Scene scene = new Scene(anchorPane);
