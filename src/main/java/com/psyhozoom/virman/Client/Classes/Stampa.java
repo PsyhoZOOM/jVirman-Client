@@ -92,26 +92,26 @@ public class Stampa {
         .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
             modelPozivNaBroj, odobobrenje);
 
-    AnchorPane.setTopAnchor(platilac, 19.0);
+    AnchorPane.setTopAnchor(platilac, 22.0);
     AnchorPane.setLeftAnchor(platilac, 17.0);
 
-    AnchorPane.setTopAnchor(svrhaUplate, 100.0);
+    AnchorPane.setTopAnchor(svrhaUplate, 96.0);
     AnchorPane.setLeftAnchor(svrhaUplate, 17.0);
 
-    AnchorPane.setTopAnchor(primalac, 170.0);
+    AnchorPane.setTopAnchor(primalac, 160.0);
     AnchorPane.setLeftAnchor(primalac, 17.0);
 
     AnchorPane.setTopAnchor(sifraPlacanja, 33.0);
-    AnchorPane.setLeftAnchor(sifraPlacanja, 305.0);
+    AnchorPane.setLeftAnchor(sifraPlacanja, 310.0);
 
     AnchorPane.setTopAnchor(iznos, 33.0);
-    AnchorPane.setLeftAnchor(iznos, 420.0);
+    AnchorPane.setLeftAnchor(iznos, 430.0);
 
-    AnchorPane.setTopAnchor(racunPrimaoca, 78.0);
+    AnchorPane.setTopAnchor(racunPrimaoca, 73.0);
     AnchorPane.setLeftAnchor(racunPrimaoca, 365.0);
 
     AnchorPane.setTopAnchor(modelPozivNaBroj, 122.0);
-    AnchorPane.setLeftAnchor(modelPozivNaBroj, 305.0);
+    AnchorPane.setLeftAnchor(modelPozivNaBroj, 295.0);
 
     AnchorPane.setTopAnchor(odobobrenje, 122.0);
     AnchorPane.setLeftAnchor(odobobrenje, 370.0);
