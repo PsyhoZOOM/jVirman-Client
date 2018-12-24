@@ -8,7 +8,9 @@ import com.psyhozoom.virman.Client.Classes.Racuni;
 import com.psyhozoom.virman.Client.Classes.SifraPlacanja;
 import com.psyhozoom.virman.Client.Classes.Stampa;
 import java.net.URL;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -41,6 +43,8 @@ public class UplataController implements Initializable {
 
   private Client client;
   private Clients clients;
+  NumberFormat formatRS = NumberFormat.getInstance(new Locale.Builder().setLanguage("RS").setRegion("rs").build());
+  NumberFormat formatEN = NumberFormat.getInstance(new Locale.Builder().setLanguage("EN").setRegion("us").build());
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
@@ -107,6 +111,16 @@ public class UplataController implements Initializable {
         tPrimalac.setText(String.format("%s\n%s", clients.getNaziv().trim().toUpperCase(),
             clients.getMesto().trim().toUpperCase()));
         tRacunPrimaoca.setText(newValue.getBrojRacuna());
+      }
+    });
+
+    tIznos.focusedProperty().addListener(new ChangeListener<Boolean>() {
+      @Override
+      public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue,
+          Boolean newValue) {
+        if(!newValue){
+          //tIznos.setText(nf.format(iznos).replace("din.", ""));
+        }
       }
     });
   }
