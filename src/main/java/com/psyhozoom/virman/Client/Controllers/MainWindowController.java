@@ -448,6 +448,28 @@ public class MainWindowController implements Initializable {
     stage.setScene(new Scene(root));
     stage.setTitle("IZVEŠTAJI");
     stage.initModality(Modality.APPLICATION_MODAL);
-    stage.show();
+    stage.showAndWait();
+  }
+
+  public void printTest(ActionEvent actionEvent) {
+    Parent root = null;
+    FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("TestPrint.fxml"));
+
+    try {
+      root = loader.load();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    if(root==null)
+      return;
+
+    TestPrinter testPrinter = loader.getController();
+    testPrinter.init();
+
+    Stage stage  = new Stage();
+    stage.setScene(new Scene(root));
+    stage.setTitle("TEST STAMPA");
+    stage.initModality(Modality.APPLICATION_MODAL);
+    stage.showAndWait();
   }
 }
