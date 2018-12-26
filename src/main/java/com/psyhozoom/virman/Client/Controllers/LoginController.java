@@ -87,6 +87,7 @@ public class LoginController implements Initializable {
       settingsController.initData();
       Stage stage = new Stage();
       stage.setTitle("PODEŠAVANJA");
+      stage.setTitle("PODEŠAVANJA");
       stage.setScene(new Scene(root));
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.showAndWait();
