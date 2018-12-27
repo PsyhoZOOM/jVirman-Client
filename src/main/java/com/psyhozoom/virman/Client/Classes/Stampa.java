@@ -1,11 +1,5 @@
 package com.psyhozoom.virman.Client.Classes;
 
-import java.text.DecimalFormat;
-import javafx.print.PageLayout;
-import javafx.print.PageOrientation;
-import javafx.print.Paper;
-import javafx.print.Printer;
-import javafx.print.PrinterJob;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
@@ -14,41 +8,72 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.json.JSONObject;
 
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import java.awt.*;
+import java.awt.print.*;
+import java.text.DecimalFormat;
+
 public class Stampa {
 
-  private PrinterJob printerJob;
-  private Printer printer;
-  private PageLayout pageLayout;
-  private Paper paper;
   private DecimalFormat dtf = new DecimalFormat("###,###,###,##0.00");
   private AnchorPane anchorPane = new AnchorPane();
-  private Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("font/roboto/saxmono.ttf"), 12);
+  private Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("font/roboto/led_counter-7.ttf"), 12);
+  //private  Font font = Font.font("Courier New", FontWeight.NORMAL, 12);
+
+
 
 
   private void stampaj(AnchorPane anchorPane, Window wind) {
 
-    printerJob = PrinterJob.createPrinterJob();
-    if (printerJob != null && printerJob.showPrintDialog(wind)) {
-      pageLayout = printerJob.getPrinter().createPageLayout(Paper.A4,  PageOrientation.PORTRAIT, 0,0,0,0);
-      printerJob.getJobSettings().setPageLayout(pageLayout);
 
-      System.out.println("papir sizce: "+ printerJob.getJobSettings().getPageLayout().getPaper().getWidth()
-          + " "
-          + printerJob.getJobSettings().getPageLayout().getPaper().getHeight());
-      System.out.println("margine: "+pageLayout.getTopMargin() + " " + pageLayout.getLeftMargin());
-      System.out.println("printable size: "+ pageLayout.getPrintableWidth() + " " + pageLayout.getPrintableHeight());
-
-      anchorPane.setPrefSize(pageLayout.getPrintableWidth(), pageLayout.getPrintableHeight());
-      printerJob.getJobSettings().setPageLayout(pageLayout);
-      System.out.println(printerJob.getPrinter().getName());
-
-
-
-      if (printerJob.printPage(pageLayout, anchorPane)) {
-        printerJob.endJob();
-      } else {
-        System.out.println("FAILED TO PRINT");
+    PrinterJob pj = PrinterJob.getPrinterJob();
+    if (pj != null && pj.printDialog()) {
+      //Paper paper = printerJob.getPrintService().getAttributes().ge .createPaper("216x101", 216, 101, Units.MM);
+        Paper paper = new Paper();
+      paper.setSize(8.50*72, 2.97*72);
+      HashPrintRequestAttributeSet  atributi  = new HashPrintRequestAttributeSet();
+      pj.setPrintable(new Printable() {
+        @Override
+        public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
+          paper.setImageableArea(1, 1,  paper.getWidth(), paper.getHeight());
+            pageFormat.setPaper(paper);
+          System.out.println(String.format("paper imgwh %f %f",paper.getImageableWidth() , paper.getImageableHeight()));
+          System.out.println(String.format("paper imgxy %f %f", paper.getImageableX(), paper.getImageableY()));
+            int x = (int) Math.ceil(pageFormat.getImageableX());
+            int y = (int) Math.ceil(pageFormat.getImageableY());
+            if(pageIndex !=0 ){
+              System.out.println("NO PAGE");
+              return NO_SUCH_PAGE;
+            }
+            graphics.translate((int) Math.ceil(pageFormat.getImageableX()), (int) Math.ceil(pageFormat.getImageableY()));
+            graphics.drawString("CAO CAO", x, y );
+            graphics.drawRect(x,y, 140, 100);
+          return PAGE_EXISTS;
+        }
+      });
+      try {
+        pj.print();
+      } catch (PrinterException e) {
+        e.printStackTrace();
       }
+
+      boolean e = true;
+      if (e) return;
+/*
+      System.out.println(String.format("paper name: %s, papir size: %fx%f, margine: %f %f %f %f, printable size %fx%f",
+              pj.getJobSettings().getPageLayout().getPaper().getName(),
+              pj.getJobSettings().getPageLayout().getPaper().getWidth(),
+              pj.getJobSettings().getPageLayout().getPaper().getHeight(),
+              pj.getJobSettings().getPageLayout().getTopMargin(),
+              pj.getJobSettings().getPageLayout().getLeftMargin(),
+              pj.getJobSettings().getPageLayout().getRightMargin(),
+              pj.getJobSettings().getPageLayout().getBottomMargin(),
+              pj.getJobSettings().getPageLayout().getPrintableWidth(),
+              pj.getJobSettings().getPageLayout().getPrintableHeight()));
+     //anchorPane.setPrefSize(printerJob.getJobSettings().getPageLayout().getPrintableWidth(), printerJob.getJobSettings().getPageLayout().getPrintableHeight());
+*/
+
+
     } else {
       System.out.println("CANCELED PRINTING");
     }
@@ -92,28 +117,28 @@ public class Stampa {
         .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
             modelPozivNaBroj, odobobrenje);
 
-    AnchorPane.setTopAnchor(platilac, 25.0);
+    AnchorPane.setTopAnchor(platilac, 35.0);
     AnchorPane.setLeftAnchor(platilac, 10.0);
 
-    AnchorPane.setTopAnchor(svrhaUplate, 90.0);
+    AnchorPane.setTopAnchor(svrhaUplate, 95.0);
     AnchorPane.setLeftAnchor(svrhaUplate, 10.0);
 
-    AnchorPane.setTopAnchor(primalac, 145.0);
+    AnchorPane.setTopAnchor(primalac, 158.0);
     AnchorPane.setLeftAnchor(primalac, 10.0);
 
-    AnchorPane.setTopAnchor(sifraPlacanja, 38.0);
-    AnchorPane.setLeftAnchor(sifraPlacanja, 312.0);
+    AnchorPane.setTopAnchor(sifraPlacanja, 48.0);
+    AnchorPane.setLeftAnchor(sifraPlacanja, 308.0);
 
-    AnchorPane.setTopAnchor(iznos, 38.0);
-    AnchorPane.setLeftAnchor(iznos, 430.0);
+    AnchorPane.setTopAnchor(iznos, 48.0);
+    AnchorPane.setLeftAnchor(iznos, 360.0);
 
-    AnchorPane.setTopAnchor(racunPrimaoca, 75.0);
+    AnchorPane.setTopAnchor(racunPrimaoca, 80.0);
     AnchorPane.setLeftAnchor(racunPrimaoca, 340.0);
 
-    AnchorPane.setTopAnchor(modelPozivNaBroj, 110.0);
-    AnchorPane.setLeftAnchor(modelPozivNaBroj, 312.0);
+    AnchorPane.setTopAnchor(modelPozivNaBroj, 122.0);
+    AnchorPane.setLeftAnchor(modelPozivNaBroj, 308.0);
 
-    AnchorPane.setTopAnchor(odobobrenje, 110.0);
+    AnchorPane.setTopAnchor(odobobrenje, 120.0);
     AnchorPane.setLeftAnchor(odobobrenje, 370.0);
 
     Scene scene = new Scene(anchorPane);
@@ -190,7 +215,6 @@ public class Stampa {
     Stage stage = new Stage();
     stage.setScene(scene);
     //stage.showAndWait();
-    anchorPane.getStylesheets().removeAll();
     stampaj(anchorPane, window);
 
   }

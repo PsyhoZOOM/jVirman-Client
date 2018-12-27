@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psyhozoom.virman.Client.Controllers.TestPrinter">
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.psyhozoom.virman.Client.Controllers.TestPrinter">
    <children>
       <VBox layoutX="155.0" layoutY="81.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -84,7 +79,7 @@
             </HBox>
             <HBox layoutX="10.0" layoutY="226.0" spacing="5.0">
                <children>
-                  <TextField fx:id="aa"/>
+                  <TextField fx:id="aa" />
                   <Label text="pos" />
                   <TextField />
                </children>
@@ -92,8 +87,12 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="bADd" mnemonicParsing="false" text="Button" />
+               </children></HBox>
          </children>
       </VBox>
+      <Button mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>
