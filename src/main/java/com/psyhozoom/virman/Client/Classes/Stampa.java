@@ -3,6 +3,7 @@ package com.psyhozoom.virman.Client.Classes;
 import com.sun.javafx.print.PrintHelper;
 import com.sun.javafx.print.Units;
 import java.awt.print.Printable;
+import javafx.geometry.Insets;
 import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Paper;
@@ -35,26 +36,48 @@ public class Stampa {
 
 
 
-  private void stampaj(AnchorPane anchorPane, Window wind) {
+  private void stampaj(Window wind) {
 
+    Printer.getDefaultPrinter();
+    Printer.getAllPrinters();
     PrinterJob pj = PrinterJob.createPrinterJob();
     boolean b = pj.showPrintDialog(wind);
-    if(!b)
+    if(pj == null  && !b)
       return;
+    for (Paper pap : pj.getPrinter().getPrinterAttributes().getSupportedPapers()){
+    }
 
-    PageLayout pjj = pj.getPrinter().getDefaultPageLayout();
-    System.out.println(pjj.toString());
-    System.out.println("pr: "+ pj.getJobSettings().getPageLayout().toString());
-    Paper paper = PrintHelper.createPaper("190x55", 216, 101, Units.MM);
-    PageLayout pageLayout = pj.getPrinter().createPageLayout(paper, PageOrientation.PORTRAIT, 0,0,0,0);
-
-
-
-
+    Paper paper = PrintHelper.createPaper("VIRMAN 216x101mm", 220, 110, Units.MM);
+    PageLayout pageLayout = pj.getPrinter().createPageLayout(paper, PageOrientation.PORTRAIT, 10.0, 10.0, 10.0, 10.0);
     pj.getJobSettings().setPageLayout(pageLayout);
-    System.out.println(pj.getJobSettings().getPageLayout().toString());
+    Double w = pj.getJobSettings().getPageLayout().getPrintableWidth();
+    Double h = pj.getJobSettings().getPageLayout().getPrintableHeight();
+
+    anchorPane.getStylesheets().removeAll();
+    anchorPane.setPadding(Insets.EMPTY);
+
+    anchorPane.setMinSize(w, h);
+    anchorPane.setPrefSize(w,h);
+    anchorPane.setMaxSize(w,h);
+
+    System.out.println(pj.getJobSettings().getPageLayout().getPrintableWidth());
+    System.out.println(pj.getJobSettings().getPageLayout().getPrintableHeight());
+
+    System.out.println(pj.getJobSettings().getPageLayout().getPaper().getWidth());
+    System.out.println(pj.getJobSettings().getPageLayout().getPaper().getHeight());
+    System.out.println(pj.getJobSettings().getPageLayout().getPaper().getName());
+
+    System.out.println(pj.getJobSettings().getPageLayout().getLeftMargin());
+    System.out.println(pj.getJobSettings().getPageLayout().getTopMargin());
+    System.out.println(pj.getJobSettings().getPageLayout().getRightMargin());
+    System.out.println(pj.getJobSettings().getPageLayout().getBottomMargin());
 
 
+
+    Scene scen = new Scene(anchorPane, w, h);
+    Stage sta = new Stage();
+    sta.setScene(scen);
+    sta.showAndWait();
 
 
     if(pj!=null){
@@ -110,13 +133,10 @@ public class Stampa {
         .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
             modelPozivNaBroj, odobobrenje);
     anchorPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
-    anchorPane.setMaxSize(20, 20);
-    anchorPane.setMinSize(20, 20);
-    anchorPane.setPrefSize(20, 20);
 
 
     //AnchorPane.setTopAnchor(platilac, 35.0);
-    AnchorPane.setTopAnchor(platilac, -30.0);
+    AnchorPane.setTopAnchor(platilac, 30.0);
     AnchorPane.setLeftAnchor(platilac, 0.0);
 
     AnchorPane.setTopAnchor(svrhaUplate, 95.0);
@@ -140,12 +160,7 @@ public class Stampa {
     AnchorPane.setTopAnchor(odobobrenje, 120.0);
     AnchorPane.setLeftAnchor(odobobrenje, 370.0);
 
-    Scene scene = new Scene(anchorPane);
-    Stage stage = new Stage();
-    stage.setScene(scene);
-    //stage.showAndWait();
-    anchorPane.getStylesheets().removeAll();
-    stampaj(anchorPane, wind);
+    stampaj(wind);
   }
 
   public void stampaIsplate(Izvestaji izvestaji, Window window) {
@@ -214,7 +229,7 @@ public class Stampa {
     Stage stage = new Stage();
     stage.setScene(scene);
     //stage.showAndWait();
-    stampaj(anchorPane, window);
+    stampaj(window);
 
   }
 
