@@ -1,16 +1,28 @@
 package com.psyhozoom.virman.Client.Classes;
 
+import com.sun.javafx.print.PrintHelper;
+import com.sun.javafx.print.Units;
+import java.awt.print.Printable;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.PaperSource;
+import javafx.print.Printer;
+import javafx.print.Printer.MarginType;
+import javafx.print.PrinterJob;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import org.json.JSONObject;
-
-import javax.print.attribute.HashPrintRequestAttributeSet;
-import java.awt.*;
-import java.awt.print.*;
 import java.text.DecimalFormat;
 
 public class Stampa {
@@ -25,59 +37,40 @@ public class Stampa {
 
   private void stampaj(AnchorPane anchorPane, Window wind) {
 
+    PrinterJob pj = PrinterJob.createPrinterJob();
+    boolean b = pj.showPrintDialog(wind);
+    if(!b)
+      return;
 
-    PrinterJob pj = PrinterJob.getPrinterJob();
-    if (pj != null && pj.printDialog()) {
-      //Paper paper = printerJob.getPrintService().getAttributes().ge .createPaper("216x101", 216, 101, Units.MM);
-        Paper paper = new Paper();
-      paper.setSize(8.50*72, 2.97*72);
-      HashPrintRequestAttributeSet  atributi  = new HashPrintRequestAttributeSet();
-      pj.setPrintable(new Printable() {
-        @Override
-        public int print(Graphics graphics, PageFormat pageFormat, int pageIndex) throws PrinterException {
-          paper.setImageableArea(1, 1,  paper.getWidth(), paper.getHeight());
-            pageFormat.setPaper(paper);
-          System.out.println(String.format("paper imgwh %f %f",paper.getImageableWidth() , paper.getImageableHeight()));
-          System.out.println(String.format("paper imgxy %f %f", paper.getImageableX(), paper.getImageableY()));
-            int x = (int) Math.ceil(pageFormat.getImageableX());
-            int y = (int) Math.ceil(pageFormat.getImageableY());
-            if(pageIndex !=0 ){
-              System.out.println("NO PAGE");
-              return NO_SUCH_PAGE;
-            }
-            graphics.translate((int) Math.ceil(pageFormat.getImageableX()), (int) Math.ceil(pageFormat.getImageableY()));
-            graphics.drawString("CAO CAO", x, y );
-            graphics.drawRect(x,y, 140, 100);
-          return PAGE_EXISTS;
-        }
-      });
-      try {
-        pj.print();
-      } catch (PrinterException e) {
-        e.printStackTrace();
-      }
-
-      boolean e = true;
-      if (e) return;
-/*
-      System.out.println(String.format("paper name: %s, papir size: %fx%f, margine: %f %f %f %f, printable size %fx%f",
-              pj.getJobSettings().getPageLayout().getPaper().getName(),
-              pj.getJobSettings().getPageLayout().getPaper().getWidth(),
-              pj.getJobSettings().getPageLayout().getPaper().getHeight(),
-              pj.getJobSettings().getPageLayout().getTopMargin(),
-              pj.getJobSettings().getPageLayout().getLeftMargin(),
-              pj.getJobSettings().getPageLayout().getRightMargin(),
-              pj.getJobSettings().getPageLayout().getBottomMargin(),
-              pj.getJobSettings().getPageLayout().getPrintableWidth(),
-              pj.getJobSettings().getPageLayout().getPrintableHeight()));
-     //anchorPane.setPrefSize(printerJob.getJobSettings().getPageLayout().getPrintableWidth(), printerJob.getJobSettings().getPageLayout().getPrintableHeight());
-*/
+    PageLayout pjj = pj.getPrinter().getDefaultPageLayout();
+    System.out.println(pjj.toString());
+    System.out.println("pr: "+ pj.getJobSettings().getPageLayout().toString());
+    Paper paper = PrintHelper.createPaper("190x55", 216, 101, Units.MM);
+    PageLayout pageLayout = pj.getPrinter().createPageLayout(paper, PageOrientation.PORTRAIT, 0,0,0,0);
 
 
-    } else {
-      System.out.println("CANCELED PRINTING");
+
+
+    pj.getJobSettings().setPageLayout(pageLayout);
+    System.out.println(pj.getJobSettings().getPageLayout().toString());
+
+
+
+
+    if(pj!=null){
+      boolean b1 = pj.printPage( pageLayout, anchorPane);
+      System.out.println(b1);
+      if(b1)
+        pj.endJob();
+
     }
+
+
+
   }
+
+
+
 
   public void stampaUplate(Izvestaji izvestaji, Window wind) {
     Text platilac = new Text();
@@ -116,9 +109,15 @@ public class Stampa {
     anchorPane.getChildren()
         .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
             modelPozivNaBroj, odobobrenje);
+    anchorPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+    anchorPane.setMaxSize(20, 20);
+    anchorPane.setMinSize(20, 20);
+    anchorPane.setPrefSize(20, 20);
 
-    AnchorPane.setTopAnchor(platilac, 35.0);
-    AnchorPane.setLeftAnchor(platilac, 10.0);
+
+    //AnchorPane.setTopAnchor(platilac, 35.0);
+    AnchorPane.setTopAnchor(platilac, -30.0);
+    AnchorPane.setLeftAnchor(platilac, 0.0);
 
     AnchorPane.setTopAnchor(svrhaUplate, 95.0);
     AnchorPane.setLeftAnchor(svrhaUplate, 10.0);
