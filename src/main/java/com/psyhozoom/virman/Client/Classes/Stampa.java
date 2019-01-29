@@ -27,9 +27,9 @@ public class Stampa {
   private void stampaj(Window wind) {
 
    pj =  PrinterJob.createPrinterJob();
- //  Paper paper = PrintHelper.createPaper("VIRMAN", 8.5, 11, Units.INCH );
-    Paper paper = PrintHelper.createPaper("VIRMAN", 240, 101, Units.MM);
-   pj.getJobSettings().setPageLayout(pj.getPrinter().createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 20, 20, 20 ,20));
+   Paper paper = PrintHelper.createPaper("VIRMAN", 8.5, 11, Units.INCH );
+//    Paper paper = PrintHelper.createPaper("VIRMAN", 220, 101, Units.MM);
+  pj.getJobSettings().setPageLayout(pj.getPrinter().createPageLayout(paper, PageOrientation.PORTRAIT, 0, 0, 0.78 ,1.41));
    pj.showPrintDialog(null);
 
    double w =pj.getJobSettings().getPageLayout().getPaper().getWidth();// pj.getJobSettings().getPageLayout().getPrintableWidth();
@@ -117,27 +117,27 @@ public class Stampa {
 
     //AnchorPane.setTopAnchor(platilac, 35.0);
     AnchorPane.setTopAnchor(platilac, 30.0);
-    AnchorPane.setLeftAnchor(platilac, 0.0);
+    AnchorPane.setLeftAnchor(platilac, 10.0);
 
-    AnchorPane.setTopAnchor(svrhaUplate, 95.0);
+    AnchorPane.setTopAnchor(svrhaUplate, 90.0);
     AnchorPane.setLeftAnchor(svrhaUplate, 10.0);
 
-    AnchorPane.setTopAnchor(primalac, 158.0);
+    AnchorPane.setTopAnchor(primalac, 145.0);
     AnchorPane.setLeftAnchor(primalac, 10.0);
 
-    AnchorPane.setTopAnchor(sifraPlacanja, 48.0);
-    AnchorPane.setLeftAnchor(sifraPlacanja, 308.0);
+    AnchorPane.setTopAnchor(sifraPlacanja, 35.0);
+    AnchorPane.setLeftAnchor(sifraPlacanja, 310.0);
 
-    AnchorPane.setTopAnchor(iznos, 48.0);
-    AnchorPane.setLeftAnchor(iznos, 360.0);
+    AnchorPane.setTopAnchor(iznos, 35.0);
+    AnchorPane.setLeftAnchor(iznos, 440.0);
 
-    AnchorPane.setTopAnchor(racunPrimaoca, 80.0);
+    AnchorPane.setTopAnchor(racunPrimaoca, 70.0);
     AnchorPane.setLeftAnchor(racunPrimaoca, 340.0);
 
-    AnchorPane.setTopAnchor(modelPozivNaBroj, 122.0);
-    AnchorPane.setLeftAnchor(modelPozivNaBroj, 308.0);
+    AnchorPane.setTopAnchor(modelPozivNaBroj, 107.0);
+    AnchorPane.setLeftAnchor(modelPozivNaBroj, 312.0);
 
-    AnchorPane.setTopAnchor(odobobrenje, 120.0);
+    AnchorPane.setTopAnchor(odobobrenje, 107.0);
     AnchorPane.setLeftAnchor(odobobrenje, 370.0);
 
     stampaj(wind);
