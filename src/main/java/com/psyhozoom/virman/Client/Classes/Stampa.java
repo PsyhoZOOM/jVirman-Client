@@ -44,13 +44,6 @@ public class Stampa {
     anchorPane.setPrefSize(w,h);
     anchorPane.setMaxSize(w,h);
 
-    Text texa = new Text("GORE PRVO LEVO.");
-    anchorPane.getChildren().add(texa);
-
-    AnchorPane.setTopAnchor(texa, 0.00);
-    AnchorPane.setLeftAnchor(texa, 0.00);
-
-    anchorPane.getStylesheets().removeAll();
 
 
 
