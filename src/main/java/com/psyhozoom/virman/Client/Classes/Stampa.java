@@ -2,23 +2,11 @@ package com.psyhozoom.virman.Client.Classes;
 
 import com.sun.javafx.print.PrintHelper;
 import com.sun.javafx.print.Units;
-import java.awt.print.Printable;
-import javafx.geometry.Insets;
-import javafx.print.PageLayout;
 import javafx.print.PageOrientation;
 import javafx.print.Paper;
-import javafx.print.PaperSource;
-import javafx.print.Printer;
-import javafx.print.Printer.MarginType;
 import javafx.print.PrinterJob;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -32,56 +20,49 @@ public class Stampa {
   private AnchorPane anchorPane = new AnchorPane();
   private Font font = Font.loadFont(ClassLoader.getSystemResourceAsStream("font/roboto/led_counter-7.ttf"), 12);
   //private  Font font = Font.font("Courier New", FontWeight.NORMAL, 12);
-
+  private PrinterJob pj;
 
 
 
   private void stampaj(Window wind) {
 
-    Printer.getDefaultPrinter();
-    Printer.getAllPrinters();
-    PrinterJob pj = PrinterJob.createPrinterJob();
-    boolean b = pj.showPrintDialog(wind);
-    if(pj == null  && !b)
-      return;
-    for (Paper pap : pj.getPrinter().getPrinterAttributes().getSupportedPapers()){
-    }
+   pj =  PrinterJob.createPrinterJob();
+ //  Paper paper = PrintHelper.createPaper("VIRMAN", 8.5, 11, Units.INCH );
+    Paper paper = PrintHelper.createPaper("VIRMAN", 240, 101, Units.MM);
+   pj.getJobSettings().setPageLayout(pj.getPrinter().createPageLayout(Paper.A4, PageOrientation.PORTRAIT, 20, 20, 20 ,20));
+   pj.showPrintDialog(null);
 
-    Paper paper = PrintHelper.createPaper("VIRMAN 216x101mm", 220, 110, Units.MM);
-    PageLayout pageLayout = pj.getPrinter().createPageLayout(paper, PageOrientation.PORTRAIT, 10.0, 10.0, 10.0, 10.0);
-    pj.getJobSettings().setPageLayout(pageLayout);
-    Double w = pj.getJobSettings().getPageLayout().getPrintableWidth();
-    Double h = pj.getJobSettings().getPageLayout().getPrintableHeight();
+   double w =pj.getJobSettings().getPageLayout().getPaper().getWidth();// pj.getJobSettings().getPageLayout().getPrintableWidth();
+   double h = pj.getJobSettings().getPageLayout().getPaper().getHeight(); //pj.getJobSettings().getPageLayout().getPrintableHeight();
+
+
 
     anchorPane.getStylesheets().removeAll();
-    anchorPane.setPadding(Insets.EMPTY);
+    anchorPane.getStylesheets().add("-fx-background-color: white");
 
     anchorPane.setMinSize(w, h);
     anchorPane.setPrefSize(w,h);
     anchorPane.setMaxSize(w,h);
 
-    System.out.println(pj.getJobSettings().getPageLayout().getPrintableWidth());
-    System.out.println(pj.getJobSettings().getPageLayout().getPrintableHeight());
+    Text texa = new Text("GORE PRVO LEVO.");
+    anchorPane.getChildren().add(texa);
 
-    System.out.println(pj.getJobSettings().getPageLayout().getPaper().getWidth());
-    System.out.println(pj.getJobSettings().getPageLayout().getPaper().getHeight());
-    System.out.println(pj.getJobSettings().getPageLayout().getPaper().getName());
+    AnchorPane.setTopAnchor(texa, 0.00);
+    AnchorPane.setLeftAnchor(texa, 0.00);
 
-    System.out.println(pj.getJobSettings().getPageLayout().getLeftMargin());
-    System.out.println(pj.getJobSettings().getPageLayout().getTopMargin());
-    System.out.println(pj.getJobSettings().getPageLayout().getRightMargin());
-    System.out.println(pj.getJobSettings().getPageLayout().getBottomMargin());
+    anchorPane.getStylesheets().removeAll();
 
 
 
+/*
     Scene scen = new Scene(anchorPane, w, h);
     Stage sta = new Stage();
     sta.setScene(scen);
     sta.showAndWait();
-
-
+*/
+    System.out.println(pj.getPrinter().getName());
     if(pj!=null){
-      boolean b1 = pj.printPage( pageLayout, anchorPane);
+      boolean b1 = pj.printPage( anchorPane);
       System.out.println(b1);
       if(b1)
         pj.endJob();
@@ -132,7 +113,6 @@ public class Stampa {
     anchorPane.getChildren()
         .addAll(platilac, svrhaUplate, primalac, sifraPlacanja, iznos, racunPrimaoca,
             modelPozivNaBroj, odobobrenje);
-    anchorPane.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
 
 
     //AnchorPane.setTopAnchor(platilac, 35.0);
